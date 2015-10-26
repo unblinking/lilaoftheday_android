@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <color name="ColorPrimary">#ffc6ff</color> <!-- A nice light pink -->
+    <color name="ColorPrimaryDark">#994fe2</color> <!-- A nice purple to compliment the pink -->
+    <color name="TextColorPrimary">#4C2871</color> <!-- A darker purple -->
+    <color name="TextColorSecondary">#994fe2</color>
+    <color name="WindowBackground">@android:color/background_light</color>
+    <color name="ColorAccent">#994fe2</color>
+    <color name="preference_fallback_accent_color">@color/ColorAccent</color>
+
+</resources>
+

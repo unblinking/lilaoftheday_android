@@ -1,0 +1,18 @@
+<resources>
+
+    <style name="AppTheme" parent="AppTheme.Base">
+    </style>
+
+    <!-- Base theme applied no matter what API -->
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="colorPrimary">@color/ColorPrimary</item>
+        <item name="colorPrimaryDark">@color/ColorPrimaryDark</item>
+        <item name="colorAccent">@color/ColorAccent</item>
+        <item name="displayOptions">disableHome</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+    </style>
+
+</resources>
+

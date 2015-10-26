@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <dimen name="activity_horizontal_margin">0dp</dimen>
+    <dimen name="activity_vertical_margin">0dp</dimen>
+
+    <dimen name="text_horizontal_margin">10dp</dimen>
+    <dimen name="text_vertical_margin">10dp</dimen>
+
+    <dimen name="recycler_horizontal_margin">0dp</dimen>
+    <dimen name="recycler_vertical_margin">0dp</dimen>
+
+    <dimen name="card_margin">10dp</dimen>
+    <dimen name="card_corner_radius">5dp</dimen>
+    <dimen name="card_elevation">2dp</dimen>
+    <dimen name="card_cat_name_padding">5dp</dimen>
+    <dimen name="card_text_size">10sp</dimen>
+
+</resources>
+
