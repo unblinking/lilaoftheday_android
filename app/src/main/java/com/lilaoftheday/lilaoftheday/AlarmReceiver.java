@@ -11,32 +11,26 @@ import android.support.v7.app.NotificationCompat;
 
 public class AlarmReceiver extends BroadcastReceiver {
 
-    /* Take this action when the alarm is triggered. */
+    // onReceive is used when the alarm is triggered.
     @Override
     public void onReceive(Context context, Intent intent) {
         buildNotification(context);
     }
 
-    /* Here we build our notification */
     private void buildNotification(Context context){
 
-        /*
-        Create an intent and set the class to be executed when we check for an alarm.
-        An intent is an abstract description of an operation to be performed.
-        */
         Intent intent;
         intent = new Intent(
-                context, // App context
-                MainActivity.class // Class to be run
+                context,
+                MainActivity.class
         );
 
-        /* PendingIntent: A description of an Intent and target action to perform with it. */
         PendingIntent pendingIntent;
         pendingIntent = PendingIntent.getBroadcast(
-                context, // The Context in which this PendingIntent should perform the broadcast.
-                1, // Private request code for the sender
-                intent, // The Intent to be broadcast.
-                PendingIntent.FLAG_UPDATE_CURRENT // May be FLAG_ONE_SHOT, FLAG_NO_CREATE, FLAG_CANCEL_CURRENT, FLAG_UPDATE_CURRENT, or any of the flags as supported by Intent.fillIn() to control which unspecified parts of the intent that can be supplied when the actual send happens.
+                context,
+                1,
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT
         );
 
         NotificationCompat.Builder ncb;
