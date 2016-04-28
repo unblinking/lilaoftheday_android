@@ -1,3 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        jar="D:\android_studio_projects\Lilaoftheday\app\build\intermediates\exploded-aar\jp.wasabeef\recyclerview-animators\1.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="d2772338dc47df77740263fe45995baa29d75faf">
+        <dex dex="D:\android_studio_projects\Lilaoftheday\app\build\intermediates\transforms\dex\debug\folders\1000\10\jp.wasabeef-recyclerview-animators-1.3.0_f4b9c1167dc65bb5702a9a376ed56db73fe63500\classes.dex" />
+    </item>
+    <item
+        jar="D:\android_studio_projects\Lilaoftheday\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.1.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="d96886efea7cc74fbb3abd0e3b51d5638fc57be0">
+        <dex dex="D:\android_studio_projects\Lilaoftheday\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-cardview-v7-23.1.0_2b5086706cf21ded66b5abda3d5a534edf92de90\classes.dex" />
+    </item>
+    <item
+        jar="D:\android_studio_projects\Lilaoftheday\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\8.1.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="997773777cf3904c11d6764fe3b7668538220e49">
+        <dex dex="D:\android_studio_projects\Lilaoftheday\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-ads-8.1.0_e61d5c8775dffb213ba983c67c892af763c964e8\classes.dex" />
+    </item>
+    <item
+        jar="D:\android_sdk\extras\android\m2repository\com\android\support\support-annotations\23.1.0\support-annotations-23.1.0.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="92e3fc113ec3ee36b64603a38857b95700025633">
+        <dex dex="D:\android_studio_projects\Lilaoftheday\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.1.0_f8676386804708bcd847220b7538575b1731f69e\classes.dex" />
+    </item>
+    <item
+        jar="D:\android_studio_projects\Lilaoftheday\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="f0f4e374ee9ab1e0b804c8db35f65ba20c7b64c2">
+        <dex dex="D:\android_studio_projects\Lilaoftheday\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_5c5652d9dba8635767bbfd527b2403f1ef97a367\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Joshua\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.2\7446d06ec8d4f7ffcc53f1da37c95f200dcb9387\picasso-2.5.2.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="D:\android_studio_projects\Lilaoftheday\app\build\intermediates\transforms\dex\debug\folders\1000\10\picasso-2.5.2_33127c7256b8dc799d8f35fd68c022ae0b72cc88\classes.dex" />
+    </item>
+    <item
+        jar="D:\android_studio_projects\Lilaoftheday\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\8.1.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="4477ea44f5ec5ad064022a22691732d7638ff197">
+        <dex dex="D:\android_studio_projects\Lilaoftheday\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-appindexing-8.1.0_117eb4b9a4c9b853ffbea58424d3f18c8b7fd880\classes.dex" />
+    </item>
+    <item
+        jar="D:\android_studio_projects\Lilaoftheday\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\jars\libs\internal_impl-23.1.0.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="8716243bf04bae8d6c9ca94d27b9a9be7236f0a3">
+        <dex dex="D:\android_studio_projects\Lilaoftheday\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.1.0_35b1062600bed64a482ff3f4cfc3e986fd9a7bcc\classes.dex" />
+    </item>
+    <item
+        jar="D:\android_studio_projects\Lilaoftheday\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="403186e2e9aa5b2dbf48da2832710cee9cae40f9">
+        <dex dex="D:\android_studio_projects\Lilaoftheday\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_baa1c544dd0620a8426af89ef1d126efeec5b39d\classes.dex" />
+    </item>
+    <item
+        jar="D:\android_studio_projects\Lilaoftheday\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.1.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="3f151e49c316a5ab2c065969a3b3b55ef9b393fc">
+        <dex dex="D:\android_studio_projects\Lilaoftheday\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-23.1.0_e930c7d0b8ce7d77c19d02eb968e18711155d032\classes.dex" />
+    </item>
+    <item
+        jar="D:\android_studio_projects\Lilaoftheday\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="57ae0d750ff83f0c738d21720224ac7ea866a094">
+        <dex dex="D:\android_studio_projects\Lilaoftheday\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.1.0_e780ec48b2d5324e3dc0df48590b38e77d5287fd\classes.dex" />
+    </item>
+    <item
+        jar="D:\android_studio_projects\Lilaoftheday\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="ddde541c289c8b816a8f8fd6c325d80788c522a6">
+        <dex dex="D:\android_studio_projects\Lilaoftheday\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.1.0_b1a1bfdee008b57e4560bcf230241badddf48d5c\classes.dex" />
+    </item>
+    <item
+        jar="D:\android_studio_projects\Lilaoftheday\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="d0dda274b703dd9c5bb056867649d22b4171ae7d">
+        <dex dex="D:\android_studio_projects\Lilaoftheday\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-basement-8.1.0_ff73479414f1f90e77744b19d3f8608569cc5e36\classes.dex" />
+    </item>
+    <item
+        jar="D:\android_studio_projects\Lilaoftheday\app\build\intermediates\exploded-aar\com.android.support\preference-v7\23.1.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="f6710ac076a15f4a754fc86783ff5ba447064a9e">
+        <dex dex="D:\android_studio_projects\Lilaoftheday\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-preference-v7-23.1.0_9981ae889b063e35fb2404eb0420a8afb27b8d70\classes.dex" />
+    </item>
+    <item
+        jar="D:\android_studio_projects\Lilaoftheday\app\build\intermediates\exploded-aar\com.android.support\design\23.1.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="19026d31f5d3ae868db81319671a642be5fbba08">
+        <dex dex="D:\android_studio_projects\Lilaoftheday\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-23.1.0_eedb0a63069abbce9ced5a5aef82ce4e753af345\classes.dex" />
+    </item>
+
+</items>
