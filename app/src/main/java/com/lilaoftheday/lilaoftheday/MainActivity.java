@@ -16,7 +16,7 @@ import android.widget.Toolbar;
 public class MainActivity extends Activity {
 
     Context context;
-    CatListAdapter mAdapter;
+    CatListAdapter catListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +42,11 @@ public class MainActivity extends Activity {
         RecyclerView rv;
         rv = (RecyclerView) findViewById(R.id.rv);
         rv.setHasFixedSize(true);
-        StaggeredGridLayoutManager sglm;
-        sglm = new StaggeredGridLayoutManager(3, 1);
-        rv.setLayoutManager(sglm);
-        mAdapter = new CatListAdapter(this);
-        rv.setAdapter(mAdapter);
+        StaggeredGridLayoutManager staggeredGridLayoutManager;
+        staggeredGridLayoutManager = new StaggeredGridLayoutManager(3, 1);
+        rv.setLayoutManager(staggeredGridLayoutManager);
+        catListAdapter = new CatListAdapter(this);
+        rv.setAdapter(catListAdapter);
         rv.setItemAnimator(new DefaultItemAnimator());
 
     }

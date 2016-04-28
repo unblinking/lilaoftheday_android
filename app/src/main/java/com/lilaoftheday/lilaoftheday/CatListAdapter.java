@@ -15,9 +15,9 @@ import com.squareup.picasso.Picasso;
 
 public class CatListAdapter extends RecyclerView.Adapter<CatListAdapter.CatViewHolder> {
 
-    Context mContext;
+    Context context;
     public CatListAdapter(Context context) {
-        this.mContext = context;
+        this.context = context;
     }
 
     private int lastPosition = -1;
@@ -68,12 +68,12 @@ public class CatListAdapter extends RecyclerView.Adapter<CatListAdapter.CatViewH
 
         /* For this example we put the cat name into position in the list */
         final Cat cat = new CatArray().catArray().get(position);
-        final int imageResourceID = cat.getImageResourceId(mContext);
+        final int imageResourceID = cat.getImageResourceId(context);
 
-        // holder.catPhoto.setImageDrawable(mContext.getDrawable(imageResourceID));
+        // holder.catPhoto.setImageDrawable(context.getDrawable(imageResourceID));
 
         if (imageResourceID != 0) {
-            Picasso.with(mContext)
+            Picasso.with(context)
                     .load(imageResourceID)
                     .resize(100,100)
                     .centerInside()
@@ -85,12 +85,12 @@ public class CatListAdapter extends RecyclerView.Adapter<CatListAdapter.CatViewH
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(mContext,PhotoActivity.class);
+                Intent intent = new Intent(context,PhotoActivity.class);
                 intent.putExtra("image_resource_id", imageResourceID);
-                mContext.startActivity(intent);
+                context.startActivity(intent);
 
                 /*Toast.makeText(
-                        mContext,
+                        context,
                         "You clicked the photo.",
                         Toast.LENGTH_SHORT
                 ).show();*/
@@ -106,7 +106,7 @@ public class CatListAdapter extends RecyclerView.Adapter<CatListAdapter.CatViewH
 
         // If the bound view wasn't previously displayed on screen, it's animated
         if (position > lastPosition) {
-            Animation animation = AnimationUtils.loadAnimation(mContext, android.R.anim.slide_in_left);
+            Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.slide_in_left);
             viewToAnimate.startAnimation(animation);
             lastPosition = position;
         }
