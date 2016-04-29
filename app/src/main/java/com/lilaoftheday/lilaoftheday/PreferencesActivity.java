@@ -11,7 +11,7 @@ public class PreferencesActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preferences);
 
-        /* Using a toolbar as the actionbar */
+        // Using a toolbar as the actionbar
         Toolbar toolbar;
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setActionBar(toolbar);

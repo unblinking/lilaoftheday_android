@@ -36,30 +36,19 @@ public class PreferencesFragment extends PreferenceFragment implements SharedPre
             sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 
             // What is the new daily notification setting? true or false?
-            boolean notifyPref = sharedPref.getBoolean("receive_daily_notifications", false);
-            // The daily notification setting just got turned on.
-            if (notifyPref) {
+            String preferenceKey = context.getResources().getString(R.string.preference_notifications_checkbox_key);
+            boolean notifyPref = sharedPref.getBoolean(preferenceKey, false);
+
+            if (notifyPref) { // The daily notification setting just got turned on.
                 AlarmScheduler alarmScheduler;
                 alarmScheduler = new AlarmScheduler();
                 alarmScheduler.scheduleAlarm(context);
-                /*Toast.makeText(
-                        context,
-                        "The alarm for notifications is now on..",
-                        Toast.LENGTH_SHORT
-                ).show();*/
-
-            }
-            // The daily notification setting just got turned off.
-            else {
+            } else { // The daily notification setting just got turned off.
                 AlarmCanceler alarmCanceler;
                 alarmCanceler = new AlarmCanceler();
                 alarmCanceler.cancelAlarm(context);
-                /*Toast.makeText(
-                        context,
-                        "The alarm for notifications is now off.",
-                        Toast.LENGTH_SHORT
-                ).show();*/
             }
+
         }
     }
 

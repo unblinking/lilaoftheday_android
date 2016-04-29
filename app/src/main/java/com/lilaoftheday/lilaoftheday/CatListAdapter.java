@@ -43,34 +43,22 @@ public class CatListAdapter extends RecyclerView.Adapter<CatListAdapter.CatViewH
         - getItemCount - Gets the count of items
     */
 
-    /* How many items are in our array? */
     @Override
     public int getItemCount () {
-
-        /* For this example we get the count of the cat list. */
         return new CatArray().catArray().size();
-
     }
 
-    /* Instantiate our special ViewHolder and pass it an inflated view. */
     @Override
     public CatViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-        /* For this example we pass the cv view (our CardView layout xml filename is cv.xml) */
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cv, parent, false);
         return new CatViewHolder(view);
-
     }
 
-    /* Display an item in the correct position. */
     @Override
     public void onBindViewHolder(final CatViewHolder holder, final int position) {
 
-        /* For this example we put the cat name into position in the list */
         final Cat cat = new CatArray().catArray().get(position);
         final int imageResourceID = cat.getImageResourceId(context);
-
-        // holder.catPhoto.setImageDrawable(context.getDrawable(imageResourceID));
 
         if (imageResourceID != 0) {
             Picasso.with(context)
@@ -81,36 +69,23 @@ public class CatListAdapter extends RecyclerView.Adapter<CatListAdapter.CatViewH
         }
 
         holder.catPhoto.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
-
                 Intent intent = new Intent(context,PhotoActivity.class);
                 intent.putExtra("image_resource_id", imageResourceID);
                 context.startActivity(intent);
-
-                /*Toast.makeText(
-                        context,
-                        "You clicked the photo.",
-                        Toast.LENGTH_SHORT
-                ).show();*/
-
             }
-
         });
 
         setAnimation(holder.cv, position);
     }
 
     private void setAnimation(View viewToAnimate, int position) {
-
-        // If the bound view wasn't previously displayed on screen, it's animated
         if (position > lastPosition) {
             Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.slide_in_left);
             viewToAnimate.startAnimation(animation);
             lastPosition = position;
         }
-
     }
 
 }

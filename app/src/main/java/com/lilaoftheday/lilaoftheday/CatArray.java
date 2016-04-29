@@ -2,10 +2,10 @@ package com.lilaoftheday.lilaoftheday;
 
 import java.util.ArrayList;
 
-/* In this class we create an array of cats */
+// In this class we create an array of drawable photo file names
 public class CatArray {
 
-    /* To get started with version 1 we use this static list of cat photo names. */
+    // To get started with version 1 we use this static list of cat photo names
     static String[] catPhotoNameArray;
     static {
         catPhotoNameArray = new String[] {
@@ -45,17 +45,15 @@ public class CatArray {
     Now that we've got all of the different pieces of information about the cats ready, we
     create the array of cats and return it.
     */
-    static ArrayList<Cat> catArray() {
+    ArrayList<Cat> catArray() {
 
         ArrayList<Cat> catArrayList;
         catArrayList = new ArrayList<>();
 
         // For each cat photo name in our cat photo name array
         for (String catPhotoName : catPhotoNameArray) {
-            // Declare and assign a new cat
             Cat cat;
             cat = new Cat();
-            //
             cat.photoName = catPhotoName;
             catArrayList.add(cat);
         }

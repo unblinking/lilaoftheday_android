@@ -2,7 +2,6 @@ package com.lilaoftheday.lilaoftheday;
 
 import android.content.Context;
 
-/* This class represents a cat. */
 public class Cat {
 
     // For now, only a photo, but more to be added in the future.

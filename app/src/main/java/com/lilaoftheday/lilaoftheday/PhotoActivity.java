@@ -11,10 +11,10 @@ public class PhotoActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo);
 
-        /* Using a toolbar as the actionbar */
         Toolbar toolbar;
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setActionBar(toolbar);
