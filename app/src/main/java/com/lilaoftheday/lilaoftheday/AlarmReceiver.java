@@ -26,7 +26,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         );
 
         PendingIntent pendingIntent;
-        pendingIntent = PendingIntent.getBroadcast(
+        pendingIntent = PendingIntent.getActivity(
                 context,
                 1,
                 intent,

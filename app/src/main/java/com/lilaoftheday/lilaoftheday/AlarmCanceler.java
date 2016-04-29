@@ -36,8 +36,8 @@ public class AlarmCanceler {
         // Notify the operator with a toast message.
         Toast.makeText(
                 context,
-                "The alarm for Lila notifications is now off.",
-                Toast.LENGTH_SHORT
+                R.string.notification_alarm_canceled,
+                Toast.LENGTH_LONG
         ).show();
 
     }

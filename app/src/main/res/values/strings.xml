@@ -9,24 +9,18 @@
     <!-- Menu action item strings -->
     <string name="action_preferences">Preferences</string>
     <!-- TODO: Change the notification items into a preferences setting -->
-    <string name="action_notification_schedule">Notifications on</string>
-    <string name="action_notification_cancel">Notifications off</string>
     <string name="action_notification_check">Notifications check</string>
-    <string name="action_notification_check2">Notifications check2</string>
-
-    <!-- AdMob strings -->
-    <!--
-    TODO: Uncomment at publication time with production ad unit ID
-    This is the Ad Unit ID provided for testing
-    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
-    -->
-    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
 
     <!-- Daily notification strings -->
+    <string name="notification_alarm_scheduled">Alarm ON for daily Lila</string>
+    <string name="notification_alarm_canceled">Alarm OFF for daily Lila</string>
+    <string name="notification_preference_true">Preference TRUE for Lila notifications</string>
+    <string name="notification_preference_false">Preference FALSE for Lila notifications</string>
     <string name="notification_content_title">Lila of the day</string>
     <string name="notification_content_text">A new Lila of the day is now available!</string>
 
     <string name="preference_notifications_category_title">Notifications</string>
+    <string name="preference_notifications_checkbox_key">receive_daily_notifications</string>
     <string name="preference_notifications_checkbox_title">Enable daily notifications</string>
     <string name="preference_notifications_checkbox_summary">Turn this on to receive daily notifications.</string>
 

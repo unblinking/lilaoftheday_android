@@ -34,20 +34,22 @@ public class AlarmScheduler {
         device was booted, but doesn't wake up the device. The elapsed time includes any time during
         which the device was asleep.
         */
+
         alarmManager.setInexactRepeating(
                 AlarmManager.ELAPSED_REALTIME, // int type
-                System.currentTimeMillis() + 1000, // long triggerAtMillis
-                AlarmManager.INTERVAL_FIFTEEN_MINUTES, // long intervalMillis
+                AlarmManager.INTERVAL_DAY, // long triggerAtMillis
+                AlarmManager.INTERVAL_DAY, // long intervalMillis
                 pendingIntent
         );
 
         // Notify the operator with a toast message.
         Toast.makeText(
                 context,
-                "The alarm for Lila notifications is now on.",
-                Toast.LENGTH_SHORT
+                R.string.notification_alarm_scheduled,
+                Toast.LENGTH_LONG
         ).show();
 
     }
+
 }
 
