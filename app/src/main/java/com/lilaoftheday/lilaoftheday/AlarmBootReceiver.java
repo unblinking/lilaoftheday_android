@@ -7,12 +7,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 // When the device reboots, reschedule the alarm if necessary
 public class AlarmBootReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+
+        Log.d("LilaOfTheDay","AlarmBootReceiver onReceive");
 
         // First figure out if the preference for notifications is selected or not,
         // and if the alarm for those notifications is scheduled or not.
@@ -47,8 +50,10 @@ public class AlarmBootReceiver extends BroadcastReceiver {
 
         if (notifyPref && !alarmSet) { // If preference is checked but no alarm is set
             // Reschedule the alarm for the notification
-            Intent scheduleAlarmIntent = new Intent(context, AlarmScheduler.class);
-            context.startService(scheduleAlarmIntent);
+            AlarmScheduler alarmScheduler;
+            alarmScheduler = new AlarmScheduler();
+            alarmScheduler.scheduleAlarm(context);
+
         }
         if (notifyPref && alarmSet) { // If preference is checked and alarm is set
             // Do nothing, everything is as it should be
@@ -58,8 +63,9 @@ public class AlarmBootReceiver extends BroadcastReceiver {
         }
         if (!notifyPref && alarmSet) { // If preference is unchecked and alarm is set
             // Cancel the alarm for the notification, why is it set if preference is not checked?
-            Intent cancelAlarmIntent = new Intent(context, AlarmCanceler.class);
-            context.startService(cancelAlarmIntent);
+            AlarmCanceler alarmCanceler;
+            alarmCanceler = new AlarmCanceler();
+            alarmCanceler.cancelAlarm(context);
         }
 
     }
