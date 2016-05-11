@@ -60,10 +60,18 @@ public class CatListAdapter extends RecyclerView.Adapter<CatListAdapter.CatViewH
         final Cat cat = new CatArray().catArray().get(position);
         final int imageResourceID = cat.getImageResourceId(context);
 
+        /*if (imageResourceID != 0) {
+            Picasso.with(context)
+                    .load(imageResourceID)
+                    .resize(200,200)
+                    .centerInside()
+                    .into(holder.catPhoto);
+        }*/
+
         if (imageResourceID != 0) {
             Picasso.with(context)
                     .load(imageResourceID)
-                    .resize(100,100)
+                    .resize(150,150)
                     .centerInside()
                     .into(holder.catPhoto);
         }
