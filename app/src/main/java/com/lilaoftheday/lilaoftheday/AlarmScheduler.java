@@ -41,6 +41,13 @@ public class AlarmScheduler {
                 pendingIntent
         );
 
+        // TESTING section for a quick notification (without waiting a full day like normal)
+        /*alarmManager.set(
+                AlarmManager.RTC, // int type
+                System.currentTimeMillis(), // long triggerAtMillis
+                pendingIntent
+        );*/
+
         // Notify the operator with a toast message.
         /*Toast.makeText(
                 context,

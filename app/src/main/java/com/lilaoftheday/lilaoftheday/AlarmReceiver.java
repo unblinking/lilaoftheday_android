@@ -5,8 +5,6 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.v7.app.NotificationCompat;
 
 public class AlarmReceiver extends BroadcastReceiver {
@@ -24,6 +22,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 context,
                 MainActivity.class
         );
+
         PendingIntent pendingIntent;
         pendingIntent = PendingIntent.getActivity(
                 context,
@@ -35,31 +34,40 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         int smallIcon;
         smallIcon = R.drawable.icon_small;
-        Bitmap largeIcon;
+
+        /*Bitmap largeIcon;
         largeIcon = BitmapFactory.decodeResource(
                 context.getResources(),
                 R.mipmap.ic_launcher
-        );
+        );*/
 
         String contentTitle;
         contentTitle = context.getString(
                 R.string.notification_content_title
         );
+
         String contentText;
         contentText = context.getString(
                 R.string.notification_content_text
         );
 
+        android.support.v4.app.NotificationCompat.BigTextStyle contentTextBig;
+        contentTextBig = new android.support.v4.app.NotificationCompat.BigTextStyle();
+        contentTextBig.bigText(contentText);
+
         NotificationCompat.Builder ncb;
         ncb = new NotificationCompat.Builder(context);
-        ncb.setWhen(System.currentTimeMillis())
-                .setContentTitle(contentTitle)
-                .setContentText(contentText)
-                .setTicker(contentText)
-                .setSmallIcon(smallIcon)
-                .setLargeIcon(largeIcon)
-                .setContentIntent(pendingIntent)
-                .setAutoCancel(true);
+
+        ncb.setWhen(System.currentTimeMillis());
+        ncb.setContentTitle(contentTitle);
+        ncb.setContentText(contentText);
+        ncb.setTicker(contentText);
+        ncb.setSmallIcon(smallIcon);
+        /*ncb.setLargeIcon(largeIcon);*/
+        ncb.setContentIntent(pendingIntent);
+        ncb.setAutoCancel(true);
+        ncb.setStyle(contentTextBig);
+
         NotificationManager notificationManager;
         notificationManager = (NotificationManager)context
                 .getSystemService(

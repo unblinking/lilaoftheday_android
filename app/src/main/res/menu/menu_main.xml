@@ -14,12 +14,12 @@
         app:showAsAction="never"
         />
 
-    <item
+    <!--<item
         android:id="@+id/action_notification_check"
         android:title="@string/action_notification_check"
         android:orderInCategory="302"
         app:showAsAction="never"
-        />
+        />-->
 
 </menu>
 

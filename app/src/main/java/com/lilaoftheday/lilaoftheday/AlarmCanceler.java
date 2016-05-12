@@ -4,7 +4,6 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.widget.Toast;
 
 public class AlarmCanceler {
 
@@ -34,11 +33,11 @@ public class AlarmCanceler {
         pendingIntent.cancel();
 
         // Notify the operator with a toast message.
-        Toast.makeText(
+        /*Toast.makeText(
                 context,
                 R.string.notification_alarm_canceled,
                 Toast.LENGTH_LONG
-        ).show();
+        ).show();*/
 
     }
 
