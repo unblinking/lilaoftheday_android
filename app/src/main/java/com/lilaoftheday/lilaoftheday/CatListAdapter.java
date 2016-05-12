@@ -13,9 +13,13 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+
 public class CatListAdapter extends RecyclerView.Adapter<CatListAdapter.CatViewHolder> {
 
     Context context;
+    ArrayList<Cat> catArrayList = new CatArray().catArray();
+
     public CatListAdapter(Context context) {
         this.context = context;
     }
@@ -45,7 +49,8 @@ public class CatListAdapter extends RecyclerView.Adapter<CatListAdapter.CatViewH
 
     @Override
     public int getItemCount () {
-        return new CatArray().catArray().size();
+        /*return new CatArray().catArray().size();*/
+        return catArrayList.size();
     }
 
     @Override
@@ -57,16 +62,10 @@ public class CatListAdapter extends RecyclerView.Adapter<CatListAdapter.CatViewH
     @Override
     public void onBindViewHolder(final CatViewHolder holder, final int position) {
 
-        final Cat cat = new CatArray().catArray().get(position);
-        final int imageResourceID = cat.getImageResourceId(context);
+        /*final Cat cat = new CatArray().catArray().get(position);*/
+        final Cat cat = catArrayList.get(position);
 
-        /*if (imageResourceID != 0) {
-            Picasso.with(context)
-                    .load(imageResourceID)
-                    .resize(200,200)
-                    .centerInside()
-                    .into(holder.catPhoto);
-        }*/
+        final int imageResourceID = cat.getImageResourceId(context);
 
         if (imageResourceID != 0) {
             Picasso.with(context)

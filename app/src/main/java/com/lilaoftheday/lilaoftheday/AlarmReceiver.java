@@ -24,7 +24,6 @@ public class AlarmReceiver extends BroadcastReceiver {
                 context,
                 MainActivity.class
         );
-
         PendingIntent pendingIntent;
         pendingIntent = PendingIntent.getActivity(
                 context,
@@ -33,12 +32,9 @@ public class AlarmReceiver extends BroadcastReceiver {
                 PendingIntent.FLAG_UPDATE_CURRENT
         );
 
-        NotificationCompat.Builder ncb;
-        ncb = new NotificationCompat.Builder(context);
 
         int smallIcon;
         smallIcon = R.drawable.icon_small;
-
         Bitmap largeIcon;
         largeIcon = BitmapFactory.decodeResource(
                 context.getResources(),
@@ -49,12 +45,13 @@ public class AlarmReceiver extends BroadcastReceiver {
         contentTitle = context.getString(
                 R.string.notification_content_title
         );
-
         String contentText;
         contentText = context.getString(
                 R.string.notification_content_text
         );
 
+        NotificationCompat.Builder ncb;
+        ncb = new NotificationCompat.Builder(context);
         ncb.setWhen(System.currentTimeMillis())
                 .setContentTitle(contentTitle)
                 .setContentText(contentText)
@@ -63,7 +60,6 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .setLargeIcon(largeIcon)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);
-
         NotificationManager notificationManager;
         notificationManager = (NotificationManager)context
                 .getSystemService(
