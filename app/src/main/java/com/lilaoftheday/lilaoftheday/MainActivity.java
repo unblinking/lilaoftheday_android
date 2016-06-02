@@ -10,7 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,20 +30,25 @@ public class MainActivity extends AppCompatActivity {
         );
 
         // Create a toolbar.
-        Toolbar toolbar;
-        toolbar = (Toolbar) findViewById(R.id.tool_bar);
-        setActionBar(toolbar);
+        android.support.v7.widget.Toolbar toolbar;
+        toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
 
         // Create a recycler view.
         RecyclerView recyclerView;
         recyclerView = (RecyclerView) findViewById(R.id.rv);
-        recyclerView.setHasFixedSize(true);
+
         StaggeredGridLayoutManager staggeredGridLayoutManager;
         staggeredGridLayoutManager = new StaggeredGridLayoutManager(3, 1);
-        recyclerView.setLayoutManager(staggeredGridLayoutManager);
+
         catListAdapter = new CatListAdapter(this);
-        recyclerView.setAdapter(catListAdapter);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        if (recyclerView != null) {
+            recyclerView.setHasFixedSize(true);
+            recyclerView.setLayoutManager(staggeredGridLayoutManager);
+            recyclerView.setAdapter(catListAdapter);
+            recyclerView.setItemAnimator(new DefaultItemAnimator());
+        }
 
     }
 

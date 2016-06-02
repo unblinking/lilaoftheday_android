@@ -1,13 +1,12 @@
 package com.lilaoftheday.lilaoftheday;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
-import android.widget.Toolbar;
 
-public class PhotoActivity extends Activity {
+public class PhotoActivity extends AppCompatActivity {
 
-    String id;
+    /*String id;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,18 +14,21 @@ public class PhotoActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo);
 
-        Toolbar toolbar;
-        toolbar = (Toolbar) findViewById(R.id.tool_bar);
-        setActionBar(toolbar);
-        if (getActionBar() != null) {
-            getActionBar().setDisplayHomeAsUpEnabled(true);
+        // Create a toolbar.
+        android.support.v7.widget.Toolbar toolbar;
+        toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             ImageView imageView = (ImageView) findViewById(R.id.photo);
             int imageResourceId = getIntent().getIntExtra("image_resource_id", R.mipmap.ic_launcher);
-            imageView.setImageResource(imageResourceId);
+            if (imageView != null) {
+                imageView.setImageResource(imageResourceId);
+            }
         }
 
     }

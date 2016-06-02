@@ -1,23 +1,21 @@
 package com.lilaoftheday.lilaoftheday;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.widget.Toolbar;
+import android.support.v7.app.AppCompatActivity;
 
-public class PreferencesActivity extends Activity {
+public class PreferencesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preferences);
 
-        // Using a toolbar as the actionbar
-        Toolbar toolbar;
-        toolbar = (Toolbar) findViewById(R.id.tool_bar);
-        setActionBar(toolbar);
-
-        if (getActionBar() != null) {
-            getActionBar().setDisplayHomeAsUpEnabled(true);
+        // Create a toolbar.
+        android.support.v7.widget.Toolbar toolbar;
+        toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
     }

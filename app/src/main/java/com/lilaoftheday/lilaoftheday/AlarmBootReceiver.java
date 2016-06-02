@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 // When the device reboots, reschedule the alarm if necessary
 public class AlarmBootReceiver extends BroadcastReceiver {
@@ -15,7 +14,7 @@ public class AlarmBootReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        Log.d("LilaOfTheDay","AlarmBootReceiver onReceive");
+        /*Log.d("LilaOfTheDay","AlarmBootReceiver onReceive");*/
 
         // First figure out if the preference for notifications is selected or not,
         // and if the alarm for those notifications is scheduled or not.
@@ -23,7 +22,8 @@ public class AlarmBootReceiver extends BroadcastReceiver {
         SharedPreferences sharedPref;
         sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         // If the notification preference is set to true then notifyPref is true.
-        String preferenceKey = context.getResources().getString(R.string.preference_notifications_checkbox_key);
+        int preferenceResource = R.string.preference_notifications_checkbox_key;
+        String preferenceKey = context.getResources().getString(preferenceResource);
         boolean notifyPref = sharedPref.getBoolean(preferenceKey, false);
 
         Intent alarmReceiverIntent;

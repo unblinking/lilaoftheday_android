@@ -14,5 +14,12 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
     </style>
 
+    <style name="Toolbar" parent="Theme.AppCompat.Light">
+        <item name="android:textColorPrimary">@color/TextColorPrimary</item>
+        <item name="android:textColorSecondary">@color/TextColorSecondary</item>
+        <item name="actionMenuTextColor">@color/TextColorPrimary</item>
+        <item name="colorAccent">@color/ColorAccent</item>
+    </style>
+
 </resources>
 
