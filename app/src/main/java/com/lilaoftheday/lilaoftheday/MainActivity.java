@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         // Create a recycler view.
+
         RecyclerView recyclerView;
         recyclerView = (RecyclerView) findViewById(R.id.rv);
 
