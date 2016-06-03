@@ -3,8 +3,8 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
@@ -13,29 +13,30 @@
     >
 
     <include
-        android:id="@+id/tool_bar"
         layout="@layout/tool_bar"
+        android:id="@+id/tool_bar"
         tools:context=".activities.MainActivity"
         />
 
-    <include
-        android:id="@+id/welcome_text"
+    <FrameLayout
+        android:id="@+id/mainContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tool_bar"
+        >
+    </FrameLayout>
+
+    <!--<include
         layout="@layout/welcome_text"
+        android:id="@+id/welcome_text"
         tools:context=".activities.MainActivity"
         />
 
     <include
-        android:id="@+id/rv"
         layout="@layout/rv"
+        android:id="@+id/rv"
         tools:context=".activities.MainActivity"
-        />
-
-    <!-- AdMob commented out until publication time.
-    <include
-        android:id="@+id/ad_mob_banner"
-        layout="@layout/ad_mob_banner"
-        tools:context=".MainActivity"
-        />
-    AdMob -->
+        />-->
 
 </RelativeLayout>
+

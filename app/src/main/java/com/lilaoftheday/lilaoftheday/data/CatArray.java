@@ -57,7 +57,8 @@ public class CatArray {
         for (String catPhotoName : catPhotoNameArray) {
             Cat cat;
             cat = new Cat();
-            cat.photoName = catPhotoName;
+            cat.setPhotoName(catPhotoName);
+            /*cat.photoName = catPhotoName;*/
             catArrayList.add(cat);
         }
 

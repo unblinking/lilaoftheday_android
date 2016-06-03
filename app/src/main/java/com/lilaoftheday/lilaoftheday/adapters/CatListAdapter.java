@@ -1,7 +1,6 @@
 package com.lilaoftheday.lilaoftheday.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,10 +10,12 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
-import com.lilaoftheday.lilaoftheday.models.Cat;
-import com.lilaoftheday.lilaoftheday.data.CatArray;
 import com.lilaoftheday.lilaoftheday.R;
-import com.lilaoftheday.lilaoftheday.activities.PhotoActivity;
+import com.lilaoftheday.lilaoftheday.activities.MainActivity;
+import com.lilaoftheday.lilaoftheday.data.CatArray;
+import com.lilaoftheday.lilaoftheday.fragments.PhotoFragment;
+import com.lilaoftheday.lilaoftheday.models.Cat;
+import com.lilaoftheday.lilaoftheday.utilities.Utilities;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class CatListAdapter extends RecyclerView.Adapter<CatListAdapter.CatViewH
 
     Context context;
     ArrayList<Cat> catArrayList = new CatArray().catArray();
+    ViewGroup parent;
 
     public CatListAdapter(Context context) {
         this.context = context;
@@ -43,14 +45,6 @@ public class CatListAdapter extends RecyclerView.Adapter<CatListAdapter.CatViewH
 
     }
 
-    /*
-    We use the ViewHolder subclass to override some methods for our specific data.
-    There are three methods that we MUST implement:
-        - onCreateViewHolder - Creates the ViewHolder instance
-        - onBindViewHolder - Displays the items in correct positions in the list
-        - getItemCount - Gets the count of items
-    */
-
     @Override
     public int getItemCount () {
         /*return new CatArray().catArray().size();*/
@@ -59,6 +53,7 @@ public class CatListAdapter extends RecyclerView.Adapter<CatListAdapter.CatViewH
 
     @Override
     public CatViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        this.parent = parent;
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cv, parent, false);
         return new CatViewHolder(view);
     }
@@ -69,7 +64,10 @@ public class CatListAdapter extends RecyclerView.Adapter<CatListAdapter.CatViewH
         /*final Cat cat = new CatArray().catArray().get(position);*/
         final Cat cat = catArrayList.get(position);
 
-        final int imageResourceID = cat.getImageResourceId(context);
+        String imageName = cat.getPhotoName();
+
+        /*final int imageResourceID = cat.getImageResourceId(context);*/
+        final int imageResourceID = Utilities.getDrawableResourceId(context, imageName);
 
         if (imageResourceID != 0) {
             Picasso.with(context)
@@ -82,9 +80,19 @@ public class CatListAdapter extends RecyclerView.Adapter<CatListAdapter.CatViewH
         holder.catPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context,PhotoActivity.class);
+
+                // Start the Photo Activity
+                /*Intent intent = new Intent(context,PhotoActivity.class);
                 intent.putExtra("image_resource_id", imageResourceID);
-                context.startActivity(intent);
+                context.startActivity(intent);*/
+
+                // Start the Photo Fragment
+                ((MainActivity)context).replaceFragmentInContainer(
+                        R.id.mainContainer,
+                        PhotoFragment.newInstance(imageResourceID),
+                        "Photo"
+                );
+
             }
         });
 
