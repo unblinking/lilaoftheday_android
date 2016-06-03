@@ -1,8 +1,10 @@
-package com.lilaoftheday.lilaoftheday;
+package com.lilaoftheday.lilaoftheday.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
+
+import com.lilaoftheday.lilaoftheday.R;
 
 public class PhotoActivity extends AppCompatActivity {
 

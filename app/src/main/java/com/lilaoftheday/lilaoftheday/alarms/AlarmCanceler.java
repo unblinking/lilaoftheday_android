@@ -1,4 +1,4 @@
-package com.lilaoftheday.lilaoftheday;
+package com.lilaoftheday.lilaoftheday.alarms;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    tools:context=".MainActivity"
+    tools:context=".activities.MainActivity"
     >
 
     <include
@@ -15,8 +15,8 @@
         />
 
     <fragment
-        android:name="com.lilaoftheday.lilaoftheday.PreferencesFragment"
-        android:tag="com.lilaoftheday.lilaoftheday.PreferencesFragment"
+        android:name="com.lilaoftheday.lilaoftheday.fragments.PreferencesFragment"
+        android:tag="com.lilaoftheday.lilaoftheday.fragments.PreferencesFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout="@layout/preference"

@@ -1,4 +1,4 @@
-package com.lilaoftheday.lilaoftheday;
+package com.lilaoftheday.lilaoftheday.alarms;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -34,26 +34,19 @@ public class AlarmScheduler {
         which the device was asleep.
         */
 
-        alarmManager.setInexactRepeating(
+        /*alarmManager.setInexactRepeating(
                 AlarmManager.ELAPSED_REALTIME, // int type
                 AlarmManager.INTERVAL_DAY, // long triggerAtMillis
                 AlarmManager.INTERVAL_DAY, // long intervalMillis
                 pendingIntent
-        );
+        );*/
 
         // TESTING section for a quick notification (without waiting a full day like normal)
-        /*alarmManager.set(
+        alarmManager.set(
                 AlarmManager.RTC, // int type
                 System.currentTimeMillis(), // long triggerAtMillis
                 pendingIntent
-        );*/
-
-        // Notify the operator with a toast message.
-        /*Toast.makeText(
-                context,
-                R.string.notification_alarm_scheduled,
-                Toast.LENGTH_LONG
-        ).show();*/
+        );
 
     }
 

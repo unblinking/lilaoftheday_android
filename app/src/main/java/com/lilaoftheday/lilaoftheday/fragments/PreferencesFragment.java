@@ -1,4 +1,4 @@
-package com.lilaoftheday.lilaoftheday;
+package com.lilaoftheday.lilaoftheday.fragments;
 
 
 import android.app.Fragment;
@@ -7,6 +7,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+
+import com.lilaoftheday.lilaoftheday.R;
+import com.lilaoftheday.lilaoftheday.alarms.AlarmCanceler;
+import com.lilaoftheday.lilaoftheday.alarms.AlarmScheduler;
 
 
 /**

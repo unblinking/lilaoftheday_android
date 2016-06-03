@@ -1,4 +1,4 @@
-package com.lilaoftheday.lilaoftheday;
+package com.lilaoftheday.lilaoftheday.alarms;
 
 import android.app.PendingIntent;
 import android.content.Context;
@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
+
+import com.lilaoftheday.lilaoftheday.R;
 
 public class AlarmChecker {
 

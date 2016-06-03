@@ -1,4 +1,4 @@
-package com.lilaoftheday.lilaoftheday;
+package com.lilaoftheday.lilaoftheday.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +11,10 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import com.lilaoftheday.lilaoftheday.models.Cat;
+import com.lilaoftheday.lilaoftheday.data.CatArray;
+import com.lilaoftheday.lilaoftheday.R;
+import com.lilaoftheday.lilaoftheday.activities.PhotoActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

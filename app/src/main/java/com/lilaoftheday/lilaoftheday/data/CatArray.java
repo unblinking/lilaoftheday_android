@@ -1,4 +1,6 @@
-package com.lilaoftheday.lilaoftheday;
+package com.lilaoftheday.lilaoftheday.data;
+
+import com.lilaoftheday.lilaoftheday.models.Cat;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -46,7 +48,7 @@ public class CatArray {
     Now that we've got all of the different pieces of information about the cats ready, we
     create the array of cats and return it.
     */
-    ArrayList<Cat> catArray() {
+    public ArrayList<Cat> catArray() {
 
         ArrayList<Cat> catArrayList;
         catArrayList = new ArrayList<>();

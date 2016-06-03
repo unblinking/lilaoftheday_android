@@ -1,4 +1,4 @@
-package com.lilaoftheday.lilaoftheday;
+package com.lilaoftheday.lilaoftheday.alarms;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -6,6 +6,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.NotificationCompat;
+
+import com.lilaoftheday.lilaoftheday.R;
+import com.lilaoftheday.lilaoftheday.activities.MainActivity;
 
 public class AlarmReceiver extends BroadcastReceiver {
 

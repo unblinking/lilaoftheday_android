@@ -1,4 +1,4 @@
-package com.lilaoftheday.lilaoftheday;
+package com.lilaoftheday.lilaoftheday.activities;
 
 
 import android.content.Intent;
@@ -10,6 +10,9 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.lilaoftheday.lilaoftheday.adapters.CatListAdapter;
+import com.lilaoftheday.lilaoftheday.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -68,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.action_preferences) {
             Intent intent = new Intent();
-            String className = "com.lilaoftheday.lilaoftheday.PreferencesActivity";
+            String className = "com.lilaoftheday.lilaoftheday.activities.PreferencesActivity";
             intent.setClassName(getApplicationContext(), className);
             startActivity(intent);
             return true;
