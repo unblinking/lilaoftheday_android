@@ -16,13 +16,11 @@ public class AlarmBootReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        /*Log.d("LilaOfTheDay","AlarmBootReceiver onReceive");*/
-
         // First figure out if the preference for notifications is selected or not,
         // and if the alarm for those notifications is scheduled or not.
-
         SharedPreferences sharedPref;
         sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+
         // If the notification preference is set to true then notifyPref is true.
         int preferenceResource = R.string.preference_notifications_checkbox_key;
         String preferenceKey = context.getResources().getString(preferenceResource);
@@ -57,9 +55,11 @@ public class AlarmBootReceiver extends BroadcastReceiver {
             alarmScheduler.scheduleAlarm(context);
 
         }
+        // noinspection StatementWithEmptyBody
         if (notifyPref && alarmSet) { // If preference is checked and alarm is set
             // Do nothing, everything is as it should be
         }
+        // noinspection StatementWithEmptyBody
         if (!notifyPref && !alarmSet) { // If preference is unchecked and alarm is not set
             // Do nothing, everything is as it should be
         }

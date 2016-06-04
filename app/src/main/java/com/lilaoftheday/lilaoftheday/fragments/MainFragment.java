@@ -52,10 +52,6 @@ public class MainFragment extends android.support.v4.app.Fragment implements Vie
                 recyclerView.setItemAnimator(new DefaultItemAnimator());
             }
 
-        } else {
-            // Do nothing.
-            // If savedInstanceState is not null, the activity has been recreated from a saved
-            // instance so we don't want to do this stuff again.
         }
 
         return view;

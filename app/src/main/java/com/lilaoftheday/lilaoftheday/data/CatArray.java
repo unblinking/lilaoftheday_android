@@ -3,7 +3,6 @@ package com.lilaoftheday.lilaoftheday.data;
 import com.lilaoftheday.lilaoftheday.models.Cat;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 // In this class we create an array of drawable photo file names
 public class CatArray {
@@ -58,11 +57,10 @@ public class CatArray {
             Cat cat;
             cat = new Cat();
             cat.setPhotoName(catPhotoName);
-            /*cat.photoName = catPhotoName;*/
             catArrayList.add(cat);
         }
 
-        Collections.shuffle(catArrayList);
+        /*Collections.shuffle(catArrayList);*/
 
         return (catArrayList);
 

@@ -12,13 +12,5 @@ public class Cat {
         this.photoName = photoName;
     }
 
-    /*public int getImageResourceId(Context context) {
-        return context.getResources().getIdentifier(
-                    this.photoName,
-                    "drawable",
-                    context.getPackageName()
-        );
-    }*/
-
 }
 

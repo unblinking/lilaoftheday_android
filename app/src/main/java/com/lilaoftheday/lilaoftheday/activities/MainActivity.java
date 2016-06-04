@@ -64,11 +64,16 @@ public class MainActivity extends AppCompatActivity {
         */
         int id = item.getItemId();
         if (id == R.id.action_preferences) {
+
             Intent intent = new Intent();
             String className = "com.lilaoftheday.lilaoftheday.activities.PreferencesActivity";
             intent.setClassName(getApplicationContext(), className);
             startActivity(intent);
+
+            Utilities.updateSupportActionBarTitle(this);
+
             return true;
+
         }
         /*if (id == R.id.action_notification_check) {
             AlarmChecker alarmChecker;

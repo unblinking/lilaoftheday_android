@@ -32,13 +32,6 @@ public class AlarmCanceler {
         // Cancel a currently active PendingIntent.
         pendingIntent.cancel();
 
-        // Notify the operator with a toast message.
-        /*Toast.makeText(
-                context,
-                R.string.notification_alarm_canceled,
-                Toast.LENGTH_LONG
-        ).show();*/
-
     }
 
 }

@@ -49,14 +49,12 @@ public class CatListAdapter extends RecyclerView.Adapter<CatListAdapter.CatViewH
 
     @Override
     public int getItemCount () {
-        /*return new CatArray().catArray().size();*/
         return catArrayList.size();
     }
 
     @Override
     public CatViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         this.parent = parent;
-
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cv, parent, false);
         return new CatViewHolder(view);
     }
@@ -64,12 +62,8 @@ public class CatListAdapter extends RecyclerView.Adapter<CatListAdapter.CatViewH
     @Override
     public void onBindViewHolder(final CatViewHolder holder, final int position) {
 
-        /*final Cat cat = new CatArray().catArray().get(position);*/
         final Cat cat = catArrayList.get(position);
-
         String imageName = cat.getPhotoName();
-
-        /*final int imageResourceID = cat.getImageResourceId(context);*/
         final int imageResourceID = Utilities.getDrawableResourceId(context, imageName);
 
         if (imageResourceID != 0) {
@@ -83,12 +77,6 @@ public class CatListAdapter extends RecyclerView.Adapter<CatListAdapter.CatViewH
         holder.catPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                // Start the Photo Activity
-                /*Intent intent = new Intent(context,PhotoActivity.class);
-                intent.putExtra("image_resource_id", imageResourceID);
-                context.startActivity(intent);*/
-
                 // Start the Photo Fragment
                 Utilities.replaceFragmentInContainer(
                         R.id.mainContainer,
@@ -96,7 +84,6 @@ public class CatListAdapter extends RecyclerView.Adapter<CatListAdapter.CatViewH
                         PhotoFragment.newInstance(imageResourceID),
                         "Photo"
                 );
-
             }
         });
 
