@@ -34,19 +34,19 @@ public class AlarmScheduler {
         which the device was asleep.
         */
 
-        /*alarmManager.setInexactRepeating(
+        alarmManager.setInexactRepeating(
                 AlarmManager.ELAPSED_REALTIME, // int type
                 AlarmManager.INTERVAL_DAY, // long triggerAtMillis
                 AlarmManager.INTERVAL_DAY, // long intervalMillis
                 pendingIntent
-        );*/
+        );
 
         // TESTING section for a quick notification (without waiting a full day like normal)
-        alarmManager.set(
+        /*alarmManager.set(
                 AlarmManager.RTC, // int type
                 System.currentTimeMillis(), // long triggerAtMillis
                 pendingIntent
-        );
+        );*/
 
     }
 

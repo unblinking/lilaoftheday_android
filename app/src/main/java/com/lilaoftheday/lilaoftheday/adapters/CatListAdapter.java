@@ -1,6 +1,7 @@
 package com.lilaoftheday.lilaoftheday.adapters;
 
 import android.content.Context;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,7 +12,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.lilaoftheday.lilaoftheday.R;
-import com.lilaoftheday.lilaoftheday.activities.MainActivity;
 import com.lilaoftheday.lilaoftheday.data.CatArray;
 import com.lilaoftheday.lilaoftheday.fragments.PhotoFragment;
 import com.lilaoftheday.lilaoftheday.models.Cat;
@@ -25,9 +25,11 @@ public class CatListAdapter extends RecyclerView.Adapter<CatListAdapter.CatViewH
     Context context;
     ArrayList<Cat> catArrayList = new CatArray().catArray();
     ViewGroup parent;
+    FragmentManager fragmentManager;
 
-    public CatListAdapter(Context context) {
+    public CatListAdapter(Context context, FragmentManager fragmentManager) {
         this.context = context;
+        this.fragmentManager = fragmentManager;
     }
 
     private int lastPosition = -1;
@@ -54,6 +56,7 @@ public class CatListAdapter extends RecyclerView.Adapter<CatListAdapter.CatViewH
     @Override
     public CatViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         this.parent = parent;
+
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cv, parent, false);
         return new CatViewHolder(view);
     }
@@ -87,8 +90,9 @@ public class CatListAdapter extends RecyclerView.Adapter<CatListAdapter.CatViewH
                 context.startActivity(intent);*/
 
                 // Start the Photo Fragment
-                ((MainActivity)context).replaceFragmentInContainer(
+                Utilities.replaceFragmentInContainer(
                         R.id.mainContainer,
+                        fragmentManager,
                         PhotoFragment.newInstance(imageResourceID),
                         "Photo"
                 );
@@ -96,7 +100,8 @@ public class CatListAdapter extends RecyclerView.Adapter<CatListAdapter.CatViewH
             }
         });
 
-        setAnimation(holder.cv, position);
+        /*setAnimation(holder.cv, position);*/
+
     }
 
     private void setAnimation(View viewToAnimate, int position) {

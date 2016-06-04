@@ -37,7 +37,7 @@ public class MainFragment extends android.support.v4.app.Fragment implements Vie
         // Only do this stuff when the fragment is started for the very first time.
         if (savedInstanceState == null) {
 
-            catListAdapter = new CatListAdapter(context);
+            catListAdapter = new CatListAdapter(context, getActivity().getSupportFragmentManager());
 
             // Create a recycler view.
             RecyclerView recyclerView;
