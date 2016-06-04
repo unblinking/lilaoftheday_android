@@ -3,6 +3,7 @@ package com.lilaoftheday.lilaoftheday.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.lilaoftheday.lilaoftheday.R;
+import com.lilaoftheday.lilaoftheday.activities.MainActivity;
 import com.lilaoftheday.lilaoftheday.adapters.CatListAdapter;
 
 /**
@@ -34,24 +36,25 @@ public class MainFragment extends android.support.v4.app.Fragment implements Vie
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_main, container, false);
 
-        // Only do this stuff when the fragment is started for the very first time.
-        if (savedInstanceState == null) {
+        AppCompatActivity appCompatActivity = (MainActivity) context;
 
-            catListAdapter = new CatListAdapter(context, getActivity().getSupportFragmentManager());
+        catListAdapter = new CatListAdapter(
+                context,
+                appCompatActivity,
+                getActivity().getSupportFragmentManager()
+        );
 
-            // Create a recycler view.
-            RecyclerView recyclerView;
-            recyclerView = (RecyclerView) view.findViewById(R.id.rv);
-            StaggeredGridLayoutManager staggeredGridLayoutManager;
-            staggeredGridLayoutManager = new StaggeredGridLayoutManager(3, 1);
+        // Create a recycler view.
+        RecyclerView recyclerView;
+        recyclerView = (RecyclerView) view.findViewById(R.id.rv);
+        StaggeredGridLayoutManager staggeredGridLayoutManager;
+        staggeredGridLayoutManager = new StaggeredGridLayoutManager(3, 1);
 
-            if (recyclerView != null) {
-                recyclerView.setHasFixedSize(true);
-                recyclerView.setLayoutManager(staggeredGridLayoutManager);
-                recyclerView.setAdapter(catListAdapter);
-                recyclerView.setItemAnimator(new DefaultItemAnimator());
-            }
-
+        if (recyclerView != null) {
+            recyclerView.setHasFixedSize(true);
+            recyclerView.setLayoutManager(staggeredGridLayoutManager);
+            recyclerView.setAdapter(catListAdapter);
+            recyclerView.setItemAnimator(new DefaultItemAnimator());
         }
 
         return view;

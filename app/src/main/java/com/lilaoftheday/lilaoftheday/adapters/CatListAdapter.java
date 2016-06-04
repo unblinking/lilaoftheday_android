@@ -2,6 +2,7 @@ package com.lilaoftheday.lilaoftheday.adapters;
 
 import android.content.Context;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -25,10 +26,13 @@ public class CatListAdapter extends RecyclerView.Adapter<CatListAdapter.CatViewH
     Context context;
     ArrayList<Cat> catArrayList = new CatArray().catArray();
     ViewGroup parent;
+
+    AppCompatActivity appCompatActivity;
     FragmentManager fragmentManager;
 
-    public CatListAdapter(Context context, FragmentManager fragmentManager) {
+    public CatListAdapter(Context context, AppCompatActivity aca, FragmentManager fragmentManager) {
         this.context = context;
+        this.appCompatActivity = aca;
         this.fragmentManager = fragmentManager;
     }
 
@@ -80,6 +84,7 @@ public class CatListAdapter extends RecyclerView.Adapter<CatListAdapter.CatViewH
                 // Start the Photo Fragment
                 Utilities.replaceFragmentInContainer(
                         R.id.mainContainer,
+                        appCompatActivity,
                         fragmentManager,
                         PhotoFragment.newInstance(imageResourceID),
                         "Photo"

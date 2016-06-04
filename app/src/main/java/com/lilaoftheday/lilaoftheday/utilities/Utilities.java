@@ -48,7 +48,7 @@ public class Utilities {
         }
     }
 
-    public static void replaceFragmentInContainer(int containerViewId, FragmentManager fm, Fragment fragment, String tagName) {
+    public static void replaceFragmentInContainer(int containerViewId, AppCompatActivity aca, FragmentManager fm, Fragment fragment, String tagName) {
 
         if (fm.findFragmentByTag(tagName) != null) {
             // If the fragment is already in the fragment manager just resurface it
@@ -65,6 +65,8 @@ public class Utilities {
         }
 
         fm.executePendingTransactions();
+
+        updateSupportActionBarTitle(aca);
 
     }
 

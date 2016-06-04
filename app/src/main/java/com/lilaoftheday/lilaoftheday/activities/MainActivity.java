@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -41,13 +42,31 @@ public class MainActivity extends AppCompatActivity {
             mainFragment = MainFragment.newInstance();
             Utilities.replaceFragmentInContainer(
                     R.id.mainContainer,
+                    this,
                     getSupportFragmentManager(),
                     mainFragment,
                     "Lila of the day"
             );
-            Utilities.updateSupportActionBarTitle(this);
         }
 
+        Utilities.updateSupportActionBarTitle(this);
+
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment activeFragment;
+        activeFragment = Utilities.getActiveFragment(fm);
+
+        if (activeFragment != null && activeFragment.getTag().equals("Lila of the day")) {
+            finish();
+        } else {
+            super.onBackPressed();
+        }
+
+        Utilities.updateSupportActionBarTitle(this);
     }
 
     @Override
