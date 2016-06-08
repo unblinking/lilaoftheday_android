@@ -8,21 +8,24 @@
 
     <!-- Menu action item strings -->
     <string name="action_preferences">Preferences</string>
-    <!-- TODO: Change the notification items into a preferences setting -->
-    <string name="action_notification_check">Notifications check</string>
 
     <!-- Daily notification strings -->
-    <string name="notification_alarm_scheduled">Alarm ON for daily Lila</string>
-    <string name="notification_alarm_canceled">Alarm OFF for daily Lila</string>
-    <string name="notification_preference_true">Preference TRUE for Lila notifications</string>
-    <string name="notification_preference_false">Preference FALSE for Lila notifications</string>
     <string name="notification_content_title">Lila of the day</string>
     <string name="notification_content_text">Remember to enjoy pictures of Lila being a cute kitty!</string>
 
+    <!-- Preferences strings -->
     <string name="preference_notifications_category_title">Notifications</string>
     <string name="preference_notifications_checkbox_key">receive_daily_notifications</string>
     <string name="preference_notifications_checkbox_title">Enable daily notifications</string>
     <string name="preference_notifications_checkbox_summary">Turn this on to receive daily notifications.</string>
+
+
+    <!-- Notification debugging strings -->
+    <string name="action_notification_check">Notifications check</string>
+    <string name="notification_alarm_scheduled">Alarm ON for daily Lila</string>
+    <string name="notification_alarm_canceled">Alarm OFF for daily Lila</string>
+    <string name="notification_preference_true">Preference TRUE for Lila notifications</string>
+    <string name="notification_preference_false">Preference FALSE for Lila notifications</string>
 
 </resources>
 

@@ -3,10 +3,12 @@ package com.lilaoftheday.lilaoftheday.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.preference.PreferenceManager;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -16,40 +18,36 @@ import com.lilaoftheday.lilaoftheday.utilities.Utilities;
 
 public class MainActivity extends AppCompatActivity {
 
-    Fragment mainFragment;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
 
         // Initialize default preference values.
         PreferenceManager.setDefaultValues(
-                getApplicationContext(),
-                R.xml.preferences,
+                this, // Context
+                R.xml.preferences, // Resource ID
                 false // only if this method has never been called in the past
         );
 
         // Create a toolbar.
-        android.support.v7.widget.Toolbar toolbar;
-        toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.tool_bar);
+        Toolbar toolbar;
+        toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
 
         // Only do this stuff when the activity is started for the very first time.
         if (savedInstanceState == null) {
-            mainFragment = MainFragment.newInstance();
             Utilities.replaceFragmentInContainer(
                     R.id.mainContainer,
                     this,
                     getSupportFragmentManager(),
-                    mainFragment,
-                    "Lila of the day"
+                    MainFragment.newInstance(),
+                    getString(R.string.app_name)
             );
         }
 
-        Utilities.updateSupportActionBarTitle(this);
+        updateSupportActionBarTitle();
 
     }
 
@@ -57,16 +55,15 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
 
         FragmentManager fm = getSupportFragmentManager();
-        Fragment activeFragment;
-        activeFragment = Utilities.getActiveFragment(fm);
+        Fragment activeFragment = Utilities.getActiveFragment(fm);
 
-        if (activeFragment != null && activeFragment.getTag().equals("Lila of the day")) {
+        if (activeFragment != null && activeFragment.getTag().equals(getString(R.string.app_name))) {
             finish();
         } else {
             super.onBackPressed();
         }
 
-        Utilities.updateSupportActionBarTitle(this);
+        updateSupportActionBarTitle();
 
     }
 
@@ -87,20 +84,28 @@ public class MainActivity extends AppCompatActivity {
 
             Intent intent = new Intent();
             String className = "com.lilaoftheday.lilaoftheday.activities.PreferencesActivity";
-            intent.setClassName(getApplicationContext(), className);
+            intent.setClassName(this, className);
             startActivity(intent);
-
-            Utilities.updateSupportActionBarTitle(this);
 
             return true;
 
         }
+        // Notification check for debugging
         /*if (id == R.id.action_notification_check) {
             AlarmChecker alarmChecker;
             alarmChecker = new AlarmChecker();
             alarmChecker.checkAlarm(getApplicationContext());
         }*/
         return super.onOptionsItemSelected(item);
+    }
+
+    public void updateSupportActionBarTitle() {
+        ActionBar ab = getSupportActionBar();
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment fragment = Utilities.getActiveFragment(fm);
+        if (ab != null && fragment != null) {
+            ab.setTitle(fragment.getTag());
+        }
     }
 
 }

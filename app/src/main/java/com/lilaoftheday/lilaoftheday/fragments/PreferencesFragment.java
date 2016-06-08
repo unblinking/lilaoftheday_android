@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
-import android.preference.PreferenceManager;
+import android.support.v7.preference.PreferenceManager;
 
 import com.lilaoftheday.lilaoftheday.R;
 import com.lilaoftheday.lilaoftheday.alarms.AlarmCanceler;
@@ -44,13 +44,9 @@ public class PreferencesFragment extends PreferenceFragment implements SharedPre
             boolean notifyPref = sharedPref.getBoolean(preferenceKey, false);
 
             if (notifyPref) { // The daily notification setting just got turned on.
-                AlarmScheduler alarmScheduler;
-                alarmScheduler = new AlarmScheduler();
-                alarmScheduler.scheduleAlarm(context);
+                new AlarmScheduler().scheduleAlarm(context);
             } else { // The daily notification setting just got turned off.
-                AlarmCanceler alarmCanceler;
-                alarmCanceler = new AlarmCanceler();
-                alarmCanceler.cancelAlarm(context);
+                new AlarmCanceler().cancelAlarm(context);
             }
 
         }

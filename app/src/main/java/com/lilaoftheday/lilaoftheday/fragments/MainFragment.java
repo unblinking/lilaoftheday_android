@@ -3,7 +3,6 @@ package com.lilaoftheday.lilaoftheday.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -12,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.lilaoftheday.lilaoftheday.R;
-import com.lilaoftheday.lilaoftheday.activities.MainActivity;
 import com.lilaoftheday.lilaoftheday.adapters.CatListAdapter;
 
 /**
@@ -32,29 +30,18 @@ public class MainFragment extends android.support.v4.app.Fragment implements Vie
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         context = getContext();
-
-        // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_main, container, false);
+        catListAdapter = new CatListAdapter(context);
 
-        AppCompatActivity appCompatActivity = (MainActivity) context;
-
-        catListAdapter = new CatListAdapter(
-                context,
-                appCompatActivity,
-                getActivity().getSupportFragmentManager()
-        );
-
-        // Create a recycler view.
-        RecyclerView recyclerView;
-        recyclerView = (RecyclerView) view.findViewById(R.id.rv);
-        StaggeredGridLayoutManager staggeredGridLayoutManager;
-        staggeredGridLayoutManager = new StaggeredGridLayoutManager(3, 1);
-
-        if (recyclerView != null) {
-            recyclerView.setHasFixedSize(true);
-            recyclerView.setLayoutManager(staggeredGridLayoutManager);
-            recyclerView.setAdapter(catListAdapter);
-            recyclerView.setItemAnimator(new DefaultItemAnimator());
+        RecyclerView rv;
+        rv = (RecyclerView) view.findViewById(R.id.rv);
+        StaggeredGridLayoutManager sglm;
+        sglm = new StaggeredGridLayoutManager(3, 1);
+        if (rv != null) {
+            rv.setHasFixedSize(true);
+            rv.setLayoutManager(sglm);
+            rv.setAdapter(catListAdapter);
+            rv.setItemAnimator(new DefaultItemAnimator());
         }
 
         return view;

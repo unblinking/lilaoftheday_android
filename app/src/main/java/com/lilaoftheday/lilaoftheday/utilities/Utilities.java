@@ -5,7 +5,6 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 
 import com.lilaoftheday.lilaoftheday.R;
@@ -21,17 +20,6 @@ public class Utilities {
                 "drawable",
                 context.getPackageName()
         );
-    }
-
-    public static void updateSupportActionBarTitle(AppCompatActivity aca) {
-        FragmentManager fm = aca.getSupportFragmentManager();
-        if (aca.getSupportActionBar() != null && getActiveFragment(fm) != null) {
-            ActionBar sab = aca.getSupportActionBar();
-            Fragment af = getActiveFragment(fm);
-            if (af != null) {
-                sab.setTitle(af.getTag());
-            }
-        }
     }
 
     public static Fragment getActiveFragment(FragmentManager fm) {
@@ -65,8 +53,6 @@ public class Utilities {
         }
 
         fm.executePendingTransactions();
-
-        updateSupportActionBarTitle(aca);
 
     }
 
