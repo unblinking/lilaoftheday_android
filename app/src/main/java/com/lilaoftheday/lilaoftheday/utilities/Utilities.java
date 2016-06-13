@@ -21,7 +21,7 @@ public class Utilities {
         );
     }
 
-    public static Fragment getActiveFragment(FragmentManager fm) {
+    /*public static Fragment getActiveFragment(FragmentManager fm) {
         int backStackCount;
         backStackCount = fm.getBackStackEntryCount();
         if (backStackCount == 0) {
@@ -33,7 +33,7 @@ public class Utilities {
             fragment = fm.findFragmentByTag(tag);
             return fragment;
         }
-    }
+    }*/
 
     public static void replaceFragmentInContainer(int containerViewId, FragmentManager fm, Fragment fragment, String tagName) {
 

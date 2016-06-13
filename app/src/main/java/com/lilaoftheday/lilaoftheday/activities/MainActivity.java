@@ -3,6 +3,7 @@ package com.lilaoftheday.lilaoftheday.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.PreferenceManager;
@@ -48,21 +49,19 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    /*@Override
+    @Override
     public void onBackPressed() {
 
         FragmentManager fm = getSupportFragmentManager();
-        Fragment activeFragment = Utilities.getActiveFragment(fm);
+        int backStackCount = fm.getBackStackEntryCount();
 
-        if (activeFragment != null && activeFragment.getTag().equals(getString(R.string.app_name))) {
+        if (backStackCount == 1) {
             finish();
         } else {
             super.onBackPressed();
         }
 
-        *//*updateSupportActionBarTitle();*//*
-
-    }*/
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
