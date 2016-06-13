@@ -35,6 +35,11 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
 
+        // TODO: A better tag for fragments. Maybe pipe delimited to pull a title but also store
+        // stuff like image name or image resource ID or whatever else is helpful, more than just
+        // something like "Lila of the day" that I am using here, then pull the tag and pick it
+        // apart for stuff like updating the action bar title or whatever.
+
         // Only do this stuff when the activity is started for the very first time.
         if (savedInstanceState == null) {
             Utilities.replaceFragmentInContainer(
@@ -97,6 +102,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void updateSupportActionBarTitle(String tag) {
 
+        // TODO: Commented the old way for now. There is no longer an easy sense of which fragment
+        // happens to be the "active" fragment, since different layouts for different devices might
+        // have multiple fragments on the screen at one time. A fragment will still be active, but
+        // that's not a good thing to use to set the action bar title. Maybe revisit this later.
+
         /*ActionBar ab = getSupportActionBar();
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = Utilities.getActiveFragment(fm);
@@ -108,7 +118,6 @@ public class MainActivity extends AppCompatActivity {
         if (ab != null) {
             ab.setTitle(tag);
         }
-
 
     }
 

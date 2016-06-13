@@ -21,6 +21,10 @@ public class Utilities {
         );
     }
 
+    // TODO: Commented the old way for now. There is no longer an easy sense of which fragment
+    // happens to be the "active" fragment, since different layouts for different devices might
+    // have multiple fragments on the screen at one time. A fragment will still be active, but
+    // that's not a good thing to use to set the action bar title. Maybe revisit this later.
     /*public static Fragment getActiveFragment(FragmentManager fm) {
         int backStackCount;
         backStackCount = fm.getBackStackEntryCount();
@@ -71,6 +75,9 @@ public class Utilities {
             Fragment frag = fm.findFragmentByTag(tag);
 
             // TODO: Do this a better way
+            // For now we just have two containers, so its simple enough to just handle like this
+            // right now, but maybe the container name could be part of a future fragment tag where
+            // we have multiple pieces of info, delimited by pipes or something.
             int contViewId;
             if (tag.equals("Lila of the day")) {
                 contViewId = R.id.mainContainer;
