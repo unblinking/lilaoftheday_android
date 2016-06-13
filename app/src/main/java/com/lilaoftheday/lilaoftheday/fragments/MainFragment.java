@@ -36,7 +36,7 @@ public class MainFragment extends android.support.v4.app.Fragment implements Vie
         RecyclerView rv;
         rv = (RecyclerView) view.findViewById(R.id.rv);
         StaggeredGridLayoutManager sglm;
-        sglm = new StaggeredGridLayoutManager(3, 1);
+        sglm = new StaggeredGridLayoutManager(4, 1);
         if (rv != null) {
             rv.setHasFixedSize(true);
             rv.setLayoutManager(sglm);

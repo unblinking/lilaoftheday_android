@@ -54,12 +54,6 @@ public class PhotoFragment extends android.support.v4.app.Fragment implements Vi
         // Do nothing.
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        /*((MainActivity)getActivity()).updateSupportActionBarTitle();*/
-    }
-
     public static PhotoFragment newInstance(int imageResourceId){
         PhotoFragment fragment = new PhotoFragment();
         if (imageResourceId > 0) {

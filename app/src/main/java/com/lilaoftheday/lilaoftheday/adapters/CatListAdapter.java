@@ -26,35 +26,46 @@ public class CatListAdapter extends RecyclerView.Adapter<CatListAdapter.CatViewH
     ArrayList<Cat> catArrayList = new CatArray().catArray();
 
     public CatListAdapter(Context context) {
+
         this.context = context;
+
     }
 
     public class CatViewHolder extends RecyclerView.ViewHolder {
+
         public CardView cv;
         public ImageView catPhoto;
+
         public CatViewHolder(View itemView) {
             super(itemView);
             this.cv = (CardView) itemView.findViewById(R.id.cv);
             this.catPhoto = (ImageView) itemView.findViewById(R.id.catPhoto);
         }
+
     }
 
     @Override
     public int getItemCount () {
+
         return catArrayList.size();
+
     }
 
     @Override
     public CatViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cv, parent, false);
         return new CatViewHolder(view);
+
     }
 
     @Override
     public void onBindViewHolder(final CatViewHolder holder, final int position) {
+
         final Cat cat = catArrayList.get(position);
         String imageName = cat.getPhotoName();
         final int imageResourceID = Utilities.getDrawableResourceId(context, imageName);
+
         if (imageResourceID != 0) {
             Picasso.with(context)
                     .load(imageResourceID)
@@ -62,24 +73,24 @@ public class CatListAdapter extends RecyclerView.Adapter<CatListAdapter.CatViewH
                     .centerInside()
                     .into(holder.catPhoto);
         }
+
         holder.catPhoto.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-                // Start the Photo Fragment
+
                 AppCompatActivity activity = (MainActivity) context;
                 FragmentManager fragmentManager = activity.getSupportFragmentManager();
-                String tag = "Photo";
+
                 Utilities.replaceFragmentInContainer(
-                        R.id.mainContainer,
-                        activity,
+                        R.id.photoContainer,
                         fragmentManager,
                         PhotoFragment.newInstance(imageResourceID),
-                        tag
+                        cat.getPhotoName()
                 );
-                if (activity.getSupportActionBar() != null) {
-                    activity.getSupportActionBar().setTitle(tag);
-                }
+
             }
+
         });
         /*setAnimation(holder.cv, position);*/
     }

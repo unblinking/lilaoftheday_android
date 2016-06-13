@@ -27,15 +27,17 @@
 
         <FrameLayout
             android:id="@+id/mainContainer"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="0.50"
             >
         </FrameLayout>
 
         <FrameLayout
             android:id="@+id/photoContainer"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight="0.50"
             >
         </FrameLayout>
 

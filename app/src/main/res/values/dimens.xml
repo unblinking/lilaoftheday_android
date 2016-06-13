@@ -12,6 +12,7 @@
     <dimen name="recycler_vertical_margin">0dp</dimen>
 
     <dimen name="card_margin">10dp</dimen>
+    <dimen name="card_padding">10dp</dimen>
     <dimen name="card_corner_radius">5dp</dimen>
     <dimen name="card_elevation">2dp</dimen>
     <dimen name="card_cat_name_padding">5dp</dimen>

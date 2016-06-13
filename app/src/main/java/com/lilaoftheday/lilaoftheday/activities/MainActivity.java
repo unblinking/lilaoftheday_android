@@ -3,8 +3,6 @@ package com.lilaoftheday.lilaoftheday.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.PreferenceManager;
@@ -40,18 +38,17 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             Utilities.replaceFragmentInContainer(
                     R.id.mainContainer,
-                    this,
                     getSupportFragmentManager(),
                     MainFragment.newInstance(),
-                    getString(R.string.app_name)
+                    "Lila of the day"
             );
         }
 
-        updateSupportActionBarTitle();
+        updateSupportActionBarTitle("Lila of the day");
 
     }
 
-    @Override
+    /*@Override
     public void onBackPressed() {
 
         FragmentManager fm = getSupportFragmentManager();
@@ -63,9 +60,9 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
         }
 
-        updateSupportActionBarTitle();
+        *//*updateSupportActionBarTitle();*//*
 
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -99,13 +96,21 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void updateSupportActionBarTitle() {
-        ActionBar ab = getSupportActionBar();
+    public void updateSupportActionBarTitle(String tag) {
+
+        /*ActionBar ab = getSupportActionBar();
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = Utilities.getActiveFragment(fm);
         if (ab != null && fragment != null) {
             ab.setTitle(fragment.getTag());
+        }*/
+
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            ab.setTitle(tag);
         }
+
+
     }
 
 }

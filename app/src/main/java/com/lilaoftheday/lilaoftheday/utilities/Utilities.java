@@ -5,7 +5,6 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 
 import com.lilaoftheday.lilaoftheday.R;
 import com.lilaoftheday.lilaoftheday.models.BackStack;
@@ -36,10 +35,10 @@ public class Utilities {
         }
     }
 
-    public static void replaceFragmentInContainer(int containerViewId, AppCompatActivity aca, FragmentManager fm, Fragment fragment, String tagName) {
+    public static void replaceFragmentInContainer(int containerViewId, FragmentManager fm, Fragment fragment, String tagName) {
 
         if (fm.findFragmentByTag(tagName) != null) {
-            // If the fragment is already in the fragment manager just resurface it
+            // If a fragment with the same tag is already in the fragment manager, just resurface it.
             resurfaceFragmentInBackStack(fm, tagName);
         } else {
             FragmentTransaction fragmentTransaction = fm.beginTransaction();
@@ -70,7 +69,14 @@ public class Utilities {
 
             String tag = fm.getBackStackEntryAt(entry).getName();
             Fragment frag = fm.findFragmentByTag(tag);
-            int contViewId = R.id.mainContainer;
+
+            // TODO: Do this a better way
+            int contViewId;
+            if (tag.equals("Lila of the day")) {
+                contViewId = R.id.mainContainer;
+            } else {
+                contViewId = R.id.photoContainer;
+            }
 
             backStack.setTagName(tag);
             backStack.setFragment(frag);
