@@ -1,6 +1,7 @@
 package com.lilaoftheday.lilaoftheday.adapters;
 
 import android.content.Context;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
@@ -15,7 +16,7 @@ import com.lilaoftheday.lilaoftheday.activities.MainActivity;
 import com.lilaoftheday.lilaoftheday.data.CatArray;
 import com.lilaoftheday.lilaoftheday.fragments.PhotoFragment;
 import com.lilaoftheday.lilaoftheday.models.Cat;
-import com.lilaoftheday.lilaoftheday.utilities.Utilities;
+import com.lilaoftheday.lilaoftheday.utilities.FragmentBoss;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -23,11 +24,12 @@ import java.util.ArrayList;
 public class CatListAdapter extends RecyclerView.Adapter<CatListAdapter.CatViewHolder> {
 
     Context context;
-    ArrayList<Cat> catArrayList = new CatArray().catArray();
+    ArrayList<Cat> catArrayList;
 
     public CatListAdapter(Context context) {
 
         this.context = context;
+        catArrayList = new CatArray().getCatArray(context);
 
     }
 
@@ -63,12 +65,12 @@ public class CatListAdapter extends RecyclerView.Adapter<CatListAdapter.CatViewH
     public void onBindViewHolder(final CatViewHolder holder, final int position) {
 
         final Cat cat = catArrayList.get(position);
-        String imageName = cat.getPhotoName();
-        final int imageResourceID = Utilities.getDrawableResourceId(context, imageName);
+        final String tagTitle = cat.getPhotoName();
+        final int dbRecordId = cat.getDbRecordId(); // Also the image resource ID.
 
-        if (imageResourceID != 0) {
+        if (dbRecordId != 0) {
             Picasso.with(context)
-                    .load(imageResourceID)
+                    .load(dbRecordId)
                     .resize(200,200)
                     .centerInside()
                     .into(holder.catPhoto);
@@ -80,29 +82,22 @@ public class CatListAdapter extends RecyclerView.Adapter<CatListAdapter.CatViewH
             public void onClick(View view) {
 
                 AppCompatActivity activity = (MainActivity) context;
-                FragmentManager fragmentManager = activity.getSupportFragmentManager();
+                FragmentManager fm = activity.getSupportFragmentManager();
+                int containerViewId = R.id.photoContainer;
+                Fragment fragment = PhotoFragment.newInstance(dbRecordId);
+                String tagCombo = FragmentBoss.tagJoiner(tagTitle, containerViewId, dbRecordId);
 
-                Utilities.replaceFragmentInContainer(
-                        R.id.photoContainer,
-                        fragmentManager,
-                        PhotoFragment.newInstance(imageResourceID),
-                        cat.getPhotoName()
+                FragmentBoss.replaceFragmentInContainer(
+                        containerViewId,
+                        fm,
+                        fragment,
+                        tagCombo
                 );
 
             }
 
         });
-        /*setAnimation(holder.cv, position);*/
     }
-
-    /*private int lastPosition = -1;
-    private void setAnimation(View viewToAnimate, int position) {
-        if (position > lastPosition) {
-            Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.slide_in_left);
-            viewToAnimate.startAnimation(animation);
-            lastPosition = position;
-        }
-    }*/
 
 }
 

@@ -1,6 +1,9 @@
 package com.lilaoftheday.lilaoftheday.data;
 
+import android.content.Context;
+
 import com.lilaoftheday.lilaoftheday.models.Cat;
+import com.lilaoftheday.lilaoftheday.utilities.Utilities;
 
 import java.util.ArrayList;
 
@@ -47,7 +50,7 @@ public class CatArray {
     Now that we've got all of the different pieces of information about the cats ready, we
     create the array of cats and return it.
     */
-    public ArrayList<Cat> catArray() {
+    public ArrayList<Cat> getCatArray(Context context) {
 
         ArrayList<Cat> catArrayList;
         catArrayList = new ArrayList<>();
@@ -56,6 +59,7 @@ public class CatArray {
         for (String catPhotoName : catPhotoNameArray) {
             Cat cat;
             cat = new Cat();
+            cat.setDbRecordId(Utilities.getDrawableResourceId(context, catPhotoName));
             cat.setPhotoName(catPhotoName);
             catArrayList.add(cat);
         }

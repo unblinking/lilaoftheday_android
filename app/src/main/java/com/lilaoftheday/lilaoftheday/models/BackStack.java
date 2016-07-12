@@ -1,10 +1,8 @@
 package com.lilaoftheday.lilaoftheday.models;
 
 
-import android.support.v4.app.Fragment;
-
 /* This class represents a fragment in the back stack */
-public class BackStack {
+/*public class BackStack {
 
     public int containerViewId;
     public Fragment fragment;
@@ -30,5 +28,5 @@ public class BackStack {
         this.tagName = tagName;
     }
 
-}
+}*/
 

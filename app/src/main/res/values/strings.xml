@@ -6,7 +6,12 @@
     <string name="app_name">Lila of the day</string>
     <string name="app_tagline">The outcome of creative play!</string>
 
+    <!-- Fragment titles -->
+    <string name="fragmentTitleMain">Lila of the day</string>
+    <string name="fragmentTitlePhoto">Photo</string>
+
     <!-- Menu action item strings -->
+    <string name="actionShowGrid">Show Grid</string>
     <string name="action_preferences">Preferences</string>
 
     <!-- Daily notification strings -->
@@ -18,7 +23,6 @@
     <string name="preference_notifications_checkbox_key">receive_daily_notifications</string>
     <string name="preference_notifications_checkbox_title">Enable daily notifications</string>
     <string name="preference_notifications_checkbox_summary">Turn this on to receive daily notifications.</string>
-
 
     <!-- Notification debugging strings -->
     <string name="action_notification_check">Notifications check</string>

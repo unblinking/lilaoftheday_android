@@ -3,6 +3,7 @@ package com.lilaoftheday.lilaoftheday.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -10,17 +11,25 @@ import android.support.v7.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.lilaoftheday.lilaoftheday.R;
 import com.lilaoftheday.lilaoftheday.fragments.MainFragment;
-import com.lilaoftheday.lilaoftheday.utilities.Utilities;
+import com.lilaoftheday.lilaoftheday.utilities.FragmentBoss;
 
 public class MainActivity extends AppCompatActivity {
+
+    // TODO: Write unit tests.
+    // https://developer.android.com/training/testing/unit-testing/local-unit-tests.html
+
+    public Boolean savedInstanceNow = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        savedInstanceNow = false;
+
         setContentView(R.layout.activity_main);
 
         // Initialize default preference values.
@@ -42,30 +51,45 @@ public class MainActivity extends AppCompatActivity {
 
         // Only do this stuff when the activity is started for the very first time.
         if (savedInstanceState == null) {
-            Utilities.replaceFragmentInContainer(
-                    R.id.mainContainer,
-                    getSupportFragmentManager(),
-                    MainFragment.newInstance(),
-                    "Lila of the day"
-            );
+            showMainFragment();
         }
 
-        updateSupportActionBarTitle("Lila of the day");
+        updateSupportActionBarTitle(getString(R.string.app_name));
 
     }
 
     @Override
     public void onBackPressed() {
-
         FragmentManager fm = getSupportFragmentManager();
         int backStackCount = fm.getBackStackEntryCount();
-
-        if (backStackCount == 1) {
+        // If there's only one fragment left open, finish() the activity. If not, proceed.
+        if (backStackCount == 1 && !savedInstanceNow) {
             finish();
+        } else if (backStackCount > 1 && !savedInstanceNow) {
+            // Details to identify the mainFragment photo list.
+            int containerViewId = R.id.mainContainer;
+            String tagTitle = getString(R.string.app_name);
+            int dbRecordId = -1;
+            String tagCombo = FragmentBoss.tagJoiner(tagTitle, containerViewId, dbRecordId);
+            // If the fragment being backed out of is the mainFragment photo list, bury it instead
+            // of removing it. If not, pop it.
+            if (fm.getBackStackEntryAt(backStackCount - 1).getName().equals(tagCombo)) {
+                FragmentBoss.buryFragmentInBackStack(fm, tagCombo);
+            } else {
+                FragmentBoss.popBackStack(fm);
+            }
         } else {
+            // If all else fails, call the super.onBackPressed() method.
             super.onBackPressed();
         }
+        // Redundancy to call the resulting top fragment's onResume() method.
+        FragmentBoss.topFragmentOnResume(fm);
+    }
 
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceNow = true;
+        super.onSaveInstanceState(savedInstanceState);
     }
 
     @Override
@@ -100,25 +124,31 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void updateSupportActionBarTitle(String tag) {
-
-        // TODO: Commented the old way for now. There is no longer an easy sense of which fragment
-        // happens to be the "active" fragment, since different layouts for different devices might
-        // have multiple fragments on the screen at one time. A fragment will still be active, but
-        // that's not a good thing to use to set the action bar title. Maybe revisit this later.
-
-        /*ActionBar ab = getSupportActionBar();
+    public void showMainFragment() {
         FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = Utilities.getActiveFragment(fm);
-        if (ab != null && fragment != null) {
-            ab.setTitle(fragment.getTag());
-        }*/
+        Fragment fragment = MainFragment.newInstance();
+        int containerViewId = R.id.mainContainer;
+        String tagTitle = getString(R.string.app_name);
+        int dbRecordId = -1;
+        String tagCombo = FragmentBoss.tagJoiner(tagTitle, containerViewId, dbRecordId);
+        FragmentBoss.replaceFragmentInContainer(
+                containerViewId,
+                fm,
+                fragment,
+                tagCombo
+        );
+    }
 
+    public void resurfaceView(int containerViewId) {
+        View v = findViewById(containerViewId);
+        v.bringToFront();
+    }
+
+    private void updateSupportActionBarTitle(String tag) {
         ActionBar ab = getSupportActionBar();
         if (ab != null) {
             ab.setTitle(tag);
         }
-
     }
 
 }
