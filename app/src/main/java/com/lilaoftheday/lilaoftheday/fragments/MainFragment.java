@@ -24,6 +24,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     View view;
     MainActivity mainActivity;
 
+    long dbRecordId;
     CatListAdapter catListAdapter;
 
     public MainFragment() {
@@ -37,6 +38,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         view = inflater.inflate(R.layout.fragment_main, container, false);
 
         mainActivity = (MainActivity) getActivity();
+
         if (mainActivity != null && mainActivity.getSupportActionBar() != null) {
             ActionBar sab = mainActivity.getSupportActionBar();
             boolean landscape = mainActivity.getResources().getBoolean(R.bool.is_landscape);
@@ -50,9 +52,9 @@ public class MainFragment extends Fragment implements View.OnClickListener {
 
         }
         setHasOptionsMenu(true);
+        getFragmentArguments();
 
         catListAdapter = new CatListAdapter(getContext());
-
         RecyclerView rv;
         rv = (RecyclerView) view.findViewById(R.id.rv);
         StaggeredGridLayoutManager sglm;
@@ -90,12 +92,14 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         // Update the action bar title and menu.
         if (mainActivity != null && mainActivity.getSupportActionBar() != null) {
             ActionBar sab = mainActivity.getSupportActionBar();
-            sab.setTitle(R.string.fragmentTitleMain);
+
             boolean landscape = mainActivity.getResources().getBoolean(R.bool.is_landscape);
             if (!landscape) {
+                sab.setTitle(R.string.fragmentTitleMain);
                 sab.setDisplayHomeAsUpEnabled(false);
                 sab.setDisplayShowHomeEnabled(false);
             } else {
+                sab.setTitle(R.string.fragmentTitleMain);
                 sab.setDisplayHomeAsUpEnabled(false);
                 sab.setDisplayShowHomeEnabled(false);
             }
@@ -109,9 +113,19 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         // Do nothing.
     }
 
-    public static MainFragment newInstance(){
-        MainFragment mainFragment = new MainFragment();
-        return mainFragment;
+    public static MainFragment newInstance(int dbRecordID){
+        MainFragment fragment = new MainFragment();
+        Bundle bundle = new Bundle();
+        bundle.putLong("dbRecordID", dbRecordID);
+        fragment.setArguments(bundle);
+        return fragment;
+    }
+
+    public void getFragmentArguments() {
+        Bundle args = getArguments();
+        if (args != null && args.containsKey("dbRecordID")){
+            dbRecordId = args.getLong("dbRecordID", 0);
+        }
     }
 
 }

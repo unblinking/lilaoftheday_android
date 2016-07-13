@@ -44,11 +44,6 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
 
-        // TODO: A better tag for fragments. Maybe pipe delimited to pull a title but also store
-        // stuff like image name or image resource ID or whatever else is helpful, more than just
-        // something like "Lila of the day" that I am using here, then pull the tag and pick it
-        // apart for stuff like updating the action bar title or whatever.
-
         // Only do this stuff when the activity is started for the very first time.
         if (savedInstanceState == null) {
             showMainFragment();
@@ -106,14 +101,11 @@ public class MainActivity extends AppCompatActivity {
         */
         int id = item.getItemId();
         if (id == R.id.action_preferences) {
-
             Intent intent = new Intent();
             String className = "com.lilaoftheday.lilaoftheday.activities.PreferencesActivity";
             intent.setClassName(this, className);
             startActivity(intent);
-
             return true;
-
         }
         // Notification check for debugging
         /*if (id == R.id.action_notification_check) {
@@ -125,12 +117,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showMainFragment() {
-        FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = MainFragment.newInstance();
-        int containerViewId = R.id.mainContainer;
         String tagTitle = getString(R.string.app_name);
+        int containerViewId = R.id.mainContainer;
         int dbRecordId = -1;
         String tagCombo = FragmentBoss.tagJoiner(tagTitle, containerViewId, dbRecordId);
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment fragment = MainFragment.newInstance(dbRecordId);
         FragmentBoss.replaceFragmentInContainer(
                 containerViewId,
                 fm,

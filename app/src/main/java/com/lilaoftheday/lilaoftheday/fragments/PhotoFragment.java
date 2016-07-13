@@ -1,7 +1,10 @@
 package com.lilaoftheday.lilaoftheday.fragments;
 
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -23,9 +26,8 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
     View view;
     MainActivity mainActivity;
 
-    int menuItemShowGrid = Utilities.generateViewId();
-
     long dbRecordId;
+    int menuItemHome = Utilities.generateViewId();
     ImageView imageViewCatPhoto;
     int imageResourceId;
 
@@ -41,7 +43,6 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
 
         mainActivity = (MainActivity) getActivity();
 
-
         if (mainActivity != null && mainActivity.getSupportActionBar() != null) {
             ActionBar sab = mainActivity.getSupportActionBar();
             boolean landscape = mainActivity.getResources().getBoolean(R.bool.is_landscape);
@@ -53,14 +54,11 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
                 sab.setDisplayShowHomeEnabled(false);
             }
 
-
         }
         setHasOptionsMenu(true);
-
-        imageViewCatPhoto = (ImageView) view.findViewById(R.id.photo);
-
         getFragmentArguments();
 
+        imageViewCatPhoto = (ImageView) view.findViewById(R.id.photo);
         imageResourceId = (int) dbRecordId;
         imageViewCatPhoto.setImageResource(imageResourceId);
 
@@ -72,10 +70,18 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
     public void onPrepareOptionsMenu(Menu menu) {
         if (menu != null) {
             menu.clear(); // Clear the existing menu.
-            // Add a home button if android is not using landscape resources.
+            // If not landscape, add a menu icon to retrieve the "home" fragment.
             if (!mainActivity.getResources().getBoolean(R.bool.is_landscape)) {
-                menu.add(Menu.NONE, menuItemShowGrid, 0, R.string.actionShowGrid)
-                        .setIcon(R.drawable.ic_home_black_48dp)
+                Drawable iconHome = ContextCompat.getDrawable(
+                        getContext(),
+                        R.drawable.ic_home_white_48dp
+                );
+                iconHome.setColorFilter(
+                        ContextCompat.getColor(getContext(), R.color.ColorAccent),
+                        PorterDuff.Mode.SRC_ATOP
+                );
+                menu.add(Menu.NONE, menuItemHome, 0, R.string.actionHome)
+                        .setIcon(iconHome)
                         .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
             }
         }
@@ -88,7 +94,7 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
         if (itemId == android.R.id.home) {
             mainActivity.onBackPressed();
             return true;
-        } else if (itemId == menuItemShowGrid) {
+        } else if (itemId == menuItemHome) {
             mainActivity.showMainFragment();
             FragmentBoss.topFragmentOnResume(getFragmentManager());
             return true;
@@ -106,12 +112,14 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
         // Update the action bar title and menu.
         if (mainActivity != null && mainActivity.getSupportActionBar() != null) {
             ActionBar sab = mainActivity.getSupportActionBar();
-            sab.setTitle(R.string.fragmentTitlePhoto);
+
             boolean landscape = mainActivity.getResources().getBoolean(R.bool.is_landscape);
             if (!landscape) {
+                sab.setTitle(R.string.fragmentTitlePhoto);
                 sab.setDisplayHomeAsUpEnabled(true);
                 sab.setDisplayShowHomeEnabled(true);
             } else {
+                sab.setTitle(R.string.fragmentTitleMain);
                 sab.setDisplayHomeAsUpEnabled(false);
                 sab.setDisplayShowHomeEnabled(false);
             }

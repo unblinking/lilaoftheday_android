@@ -11,7 +11,7 @@
     <string name="fragmentTitlePhoto">Photo</string>
 
     <!-- Menu action item strings -->
-    <string name="actionShowGrid">Show Grid</string>
+    <string name="actionHome">Home</string>
     <string name="action_preferences">Preferences</string>
 
     <!-- Daily notification strings -->
