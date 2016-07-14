@@ -19,8 +19,14 @@ import com.lilaoftheday.lilaoftheday.utilities.FragmentBoss;
 
 public class MainActivity extends AppCompatActivity {
 
-    // TODO: Write unit tests.
-    // https://developer.android.com/training/testing/unit-testing/local-unit-tests.html
+    /*
+     * TODO: Write unit tests.
+     * https://developer.android.com/training/testing/unit-testing/local-unit-tests.html
+     *
+     * TODO: Create separate layout under layout-large-land and other similar qualifiers.
+     * https://developer.android.com/guide/practices/screens_support.html
+     *
+     */
 
     public Boolean savedInstanceNow = false;
 

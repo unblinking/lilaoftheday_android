@@ -40,6 +40,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     >
+                    <com.inthecheesefactory.thecheeselibrary.widget.AdjustableImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:background="@color/ColorAccent"
+                        android:padding="@dimen/card_padding"
+                        android:src="@drawable/lila_under_leaf"
+                        />
                 </FrameLayout>
             </LinearLayout>
 
@@ -53,6 +61,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     >
+                    <com.inthecheesefactory.thecheeselibrary.widget.AdjustableImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:background="@color/ColorAccent"
+                        android:padding="@dimen/card_padding"
+                        android:src="@drawable/lila_under_leaf"
+                        />
                 </FrameLayout>
             </LinearLayout>
 

@@ -23,6 +23,7 @@
             android:adjustViewBounds="true"
             android:background="@color/ColorAccent"
             android:padding="@dimen/card_padding"
+            android:src="@drawable/lila_under_leaf"
             />
 
         <!--<ImageView

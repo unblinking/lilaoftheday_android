@@ -5,6 +5,11 @@
     package="com.lilaoftheday.lilaoftheday"
     >
 
+    <!--
+    TODO: declare the screen sizes this application supports.
+    Include the supports-screens element in this manifest file.
+    -->
+
     <!-- Include required permissions to reschedule alarm on reboot -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
