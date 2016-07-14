@@ -11,7 +11,7 @@
         <item name="colorPrimaryDark">@color/ColorPrimaryDark</item>
         <item name="colorAccent">@color/ColorAccent</item>
         <item name="displayOptions">disableHome</item>
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+        <item name="preferenceTheme">@style/LilaPreferenceTheme</item>
     </style>
 
     <style name="Toolbar" parent="Theme.AppCompat.Light">
@@ -19,6 +19,10 @@
         <item name="android:textColorSecondary">@color/TextColorSecondary</item>
         <item name="actionMenuTextColor">@color/TextColorPrimary</item>
         <item name="colorAccent">@color/ColorAccent</item>
+    </style>
+
+    <style name="LilaPreferenceTheme" parent="@style/PreferenceThemeOverlay.v14.Material">
+        <item name="android:background">@android:color/white</item>
     </style>
 
 </resources>

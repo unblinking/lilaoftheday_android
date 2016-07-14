@@ -1,45 +1,38 @@
 package com.lilaoftheday.lilaoftheday.fragments;
 
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
+import android.support.v7.preference.PreferenceFragmentCompat;
+import android.support.v7.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.lilaoftheday.lilaoftheday.R;
 import com.lilaoftheday.lilaoftheday.activities.MainActivity;
+import com.lilaoftheday.lilaoftheday.alarms.AlarmCanceler;
+import com.lilaoftheday.lilaoftheday.alarms.AlarmScheduler;
 import com.lilaoftheday.lilaoftheday.utilities.FragmentBoss;
 import com.lilaoftheday.lilaoftheday.utilities.Utilities;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class PhotoFragment extends Fragment implements View.OnClickListener {
 
-    View view;
+public class PreferenceFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
+
     MainActivity mainActivity;
 
-    long dbRecordId;
+    private Context context;
     int menuItemHome = Utilities.generateViewId();
-    ImageView imageViewCatPhoto;
-    int imageResourceId;
-
-    public PhotoFragment() {
-        // Required empty public constructor
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_photo, container, false);
 
         mainActivity = (MainActivity) getActivity();
 
@@ -56,14 +49,8 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
 
         }
         setHasOptionsMenu(true);
-        getFragmentArguments();
 
-        imageViewCatPhoto = (ImageView) view.findViewById(R.id.photo);
-        imageResourceId = (int) dbRecordId;
-        imageViewCatPhoto.setImageResource(imageResourceId);
-
-        return view;
-
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     @Override
@@ -105,6 +92,39 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
+    public void onCreatePreferences(Bundle savedInstanceState, String string) {
+
+        // Load the preferences from an XML resource.
+        addPreferencesFromResource(R.xml.preferences);
+
+        /*context = getActivity();*/
+        context = getPreferenceManager().getContext();
+
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+
+        // If the preference that changed was for daily notifications.
+        if (key.equals("receive_daily_notifications")) {
+
+            SharedPreferences sharedPref;
+            sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+
+            // What is the new daily notification setting? true or false?
+            String preferenceKey = context.getResources().getString(R.string.preference_notifications_checkbox_key);
+            boolean notifyPref = sharedPref.getBoolean(preferenceKey, false);
+
+            if (notifyPref) { // The daily notification setting just got turned on.
+                new AlarmScheduler().scheduleAlarm(context);
+            } else { // The daily notification setting just got turned off.
+                new AlarmCanceler().cancelAlarm(context);
+            }
+
+        }
+    }
+
+    @Override
     public void onResume() {
         if (((MainActivity) getActivity()) != null) {
             mainActivity = (MainActivity) getActivity();
@@ -116,7 +136,7 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
 
             boolean landscape = mainActivity.getResources().getBoolean(R.bool.is_landscape);
             if (!landscape) {
-                sab.setTitle(R.string.fragmentTitlePhoto);
+                sab.setTitle(R.string.action_preferences);
                 sab.setDisplayHomeAsUpEnabled(true);
                 sab.setDisplayShowHomeEnabled(true);
             } else {
@@ -127,26 +147,20 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
             sab.invalidateOptionsMenu();
         }
         super.onResume();
+
+        // Register the shared preferences listener on resume to listen for changes.
+        getPreferenceScreen()
+                .getSharedPreferences()
+                .registerOnSharedPreferenceChangeListener(this);
     }
 
     @Override
-    public void onClick(View view) {
-        // Do nothing.
-    }
-
-    public static PhotoFragment newInstance(int dbRecordID){
-        PhotoFragment fragment = new PhotoFragment();
-        Bundle bundle = new Bundle();
-        bundle.putLong("dbRecordID", dbRecordID);
-        fragment.setArguments(bundle);
-        return fragment;
-    }
-
-    public void getFragmentArguments() {
-        Bundle args = getArguments();
-        if (args != null && args.containsKey("dbRecordID")){
-            dbRecordId = args.getLong("dbRecordID", 0);
-        }
+    public void onPause() {
+        super.onPause();
+        // Unregister the listener on pause.
+        getPreferenceScreen()
+                .getSharedPreferences()
+                .unregisterOnSharedPreferenceChangeListener(this);
     }
 
 }

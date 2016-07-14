@@ -76,6 +76,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
             menu.clear(); // Clear the existing menu.
         }
         super.onPrepareOptionsMenu(menu);
+        mainActivity.onCreateOptionsMenu(menu);
     }
 
     @Override

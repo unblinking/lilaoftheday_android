@@ -5,6 +5,8 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.NotificationCompat;
 
 import com.lilaoftheday.lilaoftheday.R;
@@ -38,11 +40,17 @@ public class AlarmReceiver extends BroadcastReceiver {
         int smallIcon;
         smallIcon = R.drawable.icon_small;
 
-        /*Bitmap largeIcon;
+        Bitmap largeIcon;
         largeIcon = BitmapFactory.decodeResource(
                 context.getResources(),
                 R.mipmap.ic_launcher
-        );*/
+        );
+
+        Bitmap largeIcon2;
+        largeIcon2 = BitmapFactory.decodeResource(
+                context.getResources(),
+                R.drawable.lila_under_leaf
+        );
 
         String contentTitle;
         contentTitle = context.getString(
@@ -69,7 +77,10 @@ public class AlarmReceiver extends BroadcastReceiver {
         /*ncb.setLargeIcon(largeIcon);*/
         ncb.setContentIntent(pendingIntent);
         ncb.setAutoCancel(true);
-        ncb.setStyle(contentTextBig);
+
+        /*ncb.setStyle(contentTextBig);*/
+        android.support.v4.app.NotificationCompat.Style style = new android.support.v4.app.NotificationCompat.BigPictureStyle().bigPicture(largeIcon2);
+        ncb.setStyle(style);
 
         NotificationManager notificationManager;
         notificationManager = (NotificationManager)context

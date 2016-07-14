@@ -1,7 +1,6 @@
 package com.lilaoftheday.lilaoftheday.activities;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -15,6 +14,7 @@ import android.view.View;
 
 import com.lilaoftheday.lilaoftheday.R;
 import com.lilaoftheday.lilaoftheday.fragments.MainFragment;
+import com.lilaoftheday.lilaoftheday.fragments.PreferenceFragment;
 import com.lilaoftheday.lilaoftheday.utilities.FragmentBoss;
 
 public class MainActivity extends AppCompatActivity {
@@ -107,10 +107,22 @@ public class MainActivity extends AppCompatActivity {
         */
         int id = item.getItemId();
         if (id == R.id.action_preferences) {
-            Intent intent = new Intent();
-            String className = "com.lilaoftheday.lilaoftheday.activities.PreferencesActivity";
-            intent.setClassName(this, className);
-            startActivity(intent);
+
+            int containerViewId = R.id.photoContainer;
+            String tagTitle = getString(R.string.action_preferences);
+            int dbRecordId = -1;
+            FragmentManager fm = getSupportFragmentManager();
+            Fragment fragment;
+            fragment = new PreferenceFragment();
+            String tagCombo = FragmentBoss.tagJoiner(tagTitle, containerViewId, dbRecordId);
+            FragmentBoss.replaceFragmentInContainer(
+                    containerViewId,
+                    fm,
+                    fragment,
+                    tagCombo
+            );
+            resurfaceView(R.id.photoContainer);
+
             return true;
         }
         // Notification check for debugging
@@ -119,7 +131,8 @@ public class MainActivity extends AppCompatActivity {
             alarmChecker = new AlarmChecker();
             alarmChecker.checkAlarm(getApplicationContext());
         }*/
-        return super.onOptionsItemSelected(item);
+        /*return super.onOptionsItemSelected(item);*/
+        return false;
     }
 
     public void showMainFragment() {
