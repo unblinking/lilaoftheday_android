@@ -16,7 +16,7 @@
 
     <!-- Daily notification strings -->
     <string name="notification_content_title">Lila of the day</string>
-    <string name="notification_content_text">Remember to enjoy pictures of Lila being a cute kitty!</string>
+    <string name="notification_content_text">Reminder: Enjoy cute Lila!</string>
 
     <!-- Preferences strings -->
     <string name="preference_notifications_category_title">Notifications</string>

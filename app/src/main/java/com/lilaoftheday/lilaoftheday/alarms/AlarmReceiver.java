@@ -7,10 +7,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.support.v4.app.NotificationCompat.BigPictureStyle;
+import android.support.v4.app.NotificationCompat.Style;
 import android.support.v7.app.NotificationCompat;
 
 import com.lilaoftheday.lilaoftheday.R;
 import com.lilaoftheday.lilaoftheday.activities.MainActivity;
+import com.lilaoftheday.lilaoftheday.data.CatArray;
+import com.lilaoftheday.lilaoftheday.models.Cat;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 public class AlarmReceiver extends BroadcastReceiver {
 
@@ -46,10 +53,13 @@ public class AlarmReceiver extends BroadcastReceiver {
                 R.mipmap.ic_launcher
         );
 
-        Bitmap largeIcon2;
-        largeIcon2 = BitmapFactory.decodeResource(
+        Bitmap photo;
+        ArrayList<Cat> catArrayList;
+        catArrayList = new CatArray().getCatArray(context);
+        Cat cat = catArrayList.get(new Random().nextInt(catArrayList.size()));
+        photo = BitmapFactory.decodeResource(
                 context.getResources(),
-                R.drawable.lila_under_leaf
+                cat.getDbRecordId()
         );
 
         String contentTitle;
@@ -62,10 +72,6 @@ public class AlarmReceiver extends BroadcastReceiver {
                 R.string.notification_content_text
         );
 
-        android.support.v4.app.NotificationCompat.BigTextStyle contentTextBig;
-        contentTextBig = new android.support.v4.app.NotificationCompat.BigTextStyle();
-        contentTextBig.bigText(contentText);
-
         NotificationCompat.Builder ncb;
         ncb = new NotificationCompat.Builder(context);
 
@@ -74,12 +80,14 @@ public class AlarmReceiver extends BroadcastReceiver {
         ncb.setContentText(contentText);
         ncb.setTicker(contentText);
         ncb.setSmallIcon(smallIcon);
-        /*ncb.setLargeIcon(largeIcon);*/
+        ncb.setLargeIcon(largeIcon);
         ncb.setContentIntent(pendingIntent);
         ncb.setAutoCancel(true);
 
-        /*ncb.setStyle(contentTextBig);*/
-        android.support.v4.app.NotificationCompat.Style style = new android.support.v4.app.NotificationCompat.BigPictureStyle().bigPicture(largeIcon2);
+        Style style = new BigPictureStyle()
+                .bigPicture(photo)
+                .setBigContentTitle(contentTitle)
+                .setSummaryText(contentText);
         ncb.setStyle(style);
 
         NotificationManager notificationManager;
