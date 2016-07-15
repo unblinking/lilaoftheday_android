@@ -12,18 +12,20 @@
     tools:context=".activities.MainActivity"
     >
 
+    <!-- Toolbar -->
     <include
         layout="@layout/tool_bar"
         android:id="@+id/tool_bar"
         tools:context=".activities.MainActivity"
         />
 
+    <!-- Fragment containers -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/tool_bar"
         >
-
+        <!-- Main container -->
         <FrameLayout
             android:id="@+id/mainContainer"
             android:layout_width="match_parent"
@@ -38,7 +40,7 @@
                 android:src="@drawable/lila_under_leaf"
                 />
         </FrameLayout>
-
+        <!-- Photo Container -->
         <FrameLayout
             android:id="@+id/photoContainer"
             android:layout_width="match_parent"
@@ -53,7 +55,6 @@
                 android:src="@drawable/lila_under_leaf"
                 />
         </FrameLayout>
-
     </RelativeLayout>
 
 </RelativeLayout>

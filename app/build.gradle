@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.lilaoftheday.lilaoftheday"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 24
         versionCode 4
         versionName "1.03"

@@ -97,6 +97,7 @@ public class CatListAdapter extends RecyclerView.Adapter<CatListAdapter.CatViewH
             }
 
         });
+
     }
 
 }

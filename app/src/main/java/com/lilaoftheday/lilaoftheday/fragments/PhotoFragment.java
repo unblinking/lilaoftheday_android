@@ -29,7 +29,6 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
     long dbRecordId;
     int menuItemHome = Utilities.generateViewId();
     ImageView imageViewCatPhoto;
-    int imageResourceId;
 
     public PhotoFragment() {
         // Required empty public constructor
@@ -59,8 +58,14 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
         getFragmentArguments();
 
         imageViewCatPhoto = (ImageView) view.findViewById(R.id.photo);
-        imageResourceId = (int) dbRecordId;
+        final int imageResourceId = (int) dbRecordId;
         imageViewCatPhoto.setImageResource(imageResourceId);
+        imageViewCatPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainActivity.fullScreenPhoto(imageResourceId).show();
+            }
+        });
 
         return view;
 
@@ -148,6 +153,8 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
             dbRecordId = args.getLong("dbRecordID", 0);
         }
     }
+
+
 
 }
 

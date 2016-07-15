@@ -33,30 +33,35 @@ public class FragmentBoss {
      *                 tagCombo by using the {@link #tagJoiner(String, int, long)}  method. Always split
      *                 the tagCombo by using the {@link #tagSplitter(String)} method.
      */
-    public static void replaceFragmentInContainer(final int containerViewId, final FragmentManager fm, final Fragment fragment, final String tagCombo) {
+    public static void replaceFragmentInContainer(final int containerViewId,
+                                                  final FragmentManager fm, final Fragment fragment,
+                                                  final String tagCombo) {
         // Get a handler that can be used to post to the main thread
         Handler handler = new Handler(Looper.getMainLooper());
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
                 if (fm != null && fragment != null && tagCombo != null) {
-
                     if (fm.findFragmentByTag(tagCombo) != null) {
-                        // If a fragment with the same tag is already in the fragment manager, just resurface it.
+                        // If a fragment with the same tag is already in the fragment manager,
+                        // just resurface it.
                         resurfaceFragmentInBackStack(fm, tagCombo);
                     } else {
-                        // If the fragment isn't in the fragment manager, add it, using replace()
+                        // If the fragment isn't in the fragment manager, add it, using replace.
                         FragmentTransaction ft = fm.beginTransaction();
                         ft.replace(
                                 containerViewId,
                                 fragment,
-                                tagCombo // Our pipe delimited tagCombo, stringTitle|intContainerViewId
+                                tagCombo
                         );
                         ft.addToBackStack(tagCombo);
                         ft.commit();
                     }
                     fm.executePendingTransactions();
-
+                    // Bring the fragment's view to the front.
+                    if (fragment.getView() != null) {
+                        fragment.getView().bringToFront();
+                    }
                 }
             }
         };
@@ -82,7 +87,8 @@ public class FragmentBoss {
      *                        This string is the fragment tag used to identify the unique fragment
      *                        that we want to resurface.
      */
-    public static void resurfaceFragmentInBackStack(final FragmentManager fm, final String desiredTagCombo) {
+    public static void resurfaceFragmentInBackStack(final FragmentManager fm,
+                                                    final String desiredTagCombo) {
 
         // Get a handler that can be used to post to the main thread
         Handler handler = new Handler(Looper.getMainLooper());
@@ -174,7 +180,8 @@ public class FragmentBoss {
 
     }
 
-    public static void buryFragmentInBackStack(final FragmentManager fm, final String desiredTagCombo) {
+    public static void buryFragmentInBackStack(final FragmentManager fm,
+                                               final String desiredTagCombo) {
         // Get a handler that can be used to post to the main thread
         Handler handler = new Handler(Looper.getMainLooper());
         Runnable runnable = new Runnable() {
@@ -341,7 +348,9 @@ public class FragmentBoss {
      *                        used to identify a fragment.
      * @return The return value is a Fragment if a match is found, or null if no match is found.
      */
-    public static Fragment findFragmentByTagTitleAndDbId(final FragmentManager fm, String desiredTagTitle, long desiredDbRecordId) {
+    public static Fragment findFragmentByTagTitleAndDbId(final FragmentManager fm,
+                                                         String desiredTagTitle,
+                                                         long desiredDbRecordId) {
         if (fm != null) {
 
             int backStackEntryCount = fm.getBackStackEntryCount();
@@ -375,7 +384,9 @@ public class FragmentBoss {
      *                          tagCombo. The tagTitle is a traditional fragment tag, a unique
      *                          string used to identify a fragment.
      */
-    public static void removeFragmentByTagTitleAndDbId(final FragmentManager fm, final String undesiredTagTitle, final long undesiredDbRecordId) {
+    public static void removeFragmentByTagTitleAndDbId(final FragmentManager fm,
+                                                       final String undesiredTagTitle,
+                                                       final long undesiredDbRecordId) {
 
         // Get a handler that can be used to post to the main thread
         Handler handler = new Handler(Looper.getMainLooper());
