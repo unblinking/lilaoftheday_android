@@ -1,5 +1,6 @@
 package com.lilaoftheday.lilaoftheday.fragments;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
@@ -57,8 +58,19 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         catListAdapter = new CatListAdapter(getContext());
         RecyclerView rv;
         rv = (RecyclerView) view.findViewById(R.id.rv);
+
+        boolean landscape = mainActivity.getResources().getBoolean(R.bool.is_landscape);
+        boolean xlarge = mainActivity.screenSize == Configuration.SCREENLAYOUT_SIZE_XLARGE;
+
         StaggeredGridLayoutManager sglm;
-        sglm = new StaggeredGridLayoutManager(4, 1);
+        if (!landscape && xlarge) {
+            // If portrait on an xlarge screen, one column of thumbnails.
+            sglm = new StaggeredGridLayoutManager(1, 1);
+        } else {
+            // All other situations, four columns of thumbnails.
+            sglm = new StaggeredGridLayoutManager(4, 1);
+        }
+
         if (rv != null) {
             rv.setHasFixedSize(true);
             rv.setLayoutManager(sglm);

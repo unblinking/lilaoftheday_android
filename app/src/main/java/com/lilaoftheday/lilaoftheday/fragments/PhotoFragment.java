@@ -1,5 +1,7 @@
 package com.lilaoftheday.lilaoftheday.fragments;
 
+import android.app.Dialog;
+import android.content.res.Configuration;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -9,9 +11,11 @@ import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.lilaoftheday.lilaoftheday.R;
 import com.lilaoftheday.lilaoftheday.activities.MainActivity;
@@ -29,6 +33,8 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
     long dbRecordId;
     int menuItemHome = Utilities.generateViewId();
     ImageView imageViewCatPhoto;
+    int fullScreenImageResourceId;
+    Dialog fullScreenImageDialog;
 
     public PhotoFragment() {
         // Required empty public constructor
@@ -45,14 +51,14 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
         if (mainActivity != null && mainActivity.getSupportActionBar() != null) {
             ActionBar sab = mainActivity.getSupportActionBar();
             boolean landscape = mainActivity.getResources().getBoolean(R.bool.is_landscape);
-            if (!landscape) {
+            boolean xlarge = mainActivity.screenSize == Configuration.SCREENLAYOUT_SIZE_XLARGE;
+            if (!landscape && !xlarge) {
                 sab.setDisplayHomeAsUpEnabled(true);
                 sab.setDisplayShowHomeEnabled(true);
             } else {
                 sab.setDisplayHomeAsUpEnabled(false);
                 sab.setDisplayShowHomeEnabled(false);
             }
-
         }
         setHasOptionsMenu(true);
         getFragmentArguments();
@@ -63,9 +69,13 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
         imageViewCatPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mainActivity.fullScreenPhoto(imageResourceId).show();
+                fullScreenPhoto(imageResourceId).show();
             }
         });
+
+        if (fullScreenImageResourceId > 0) {
+            fullScreenPhoto(fullScreenImageResourceId).show();
+        }
 
         return view;
 
@@ -76,7 +86,9 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
         if (menu != null) {
             menu.clear(); // Clear the existing menu.
             // If not landscape, add a menu icon to retrieve the "home" fragment.
-            if (!mainActivity.getResources().getBoolean(R.bool.is_landscape)) {
+            boolean landscape = mainActivity.getResources().getBoolean(R.bool.is_landscape);
+            boolean xlarge = mainActivity.screenSize == Configuration.SCREENLAYOUT_SIZE_XLARGE;
+            if (!landscape && !xlarge) {
                 Drawable iconHome = ContextCompat.getDrawable(
                         getContext(),
                         R.drawable.ic_home_white_48dp
@@ -110,6 +122,15 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
+    public void onPause() {
+        if (fullScreenImageDialog != null) {
+            fullScreenImageDialog.dismiss();
+            fullScreenImageDialog = null;
+        }
+        super.onPause();
+    }
+
+    @Override
     public void onResume() {
         if (((MainActivity) getActivity()) != null) {
             mainActivity = (MainActivity) getActivity();
@@ -118,9 +139,9 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
         // Update the action bar title and menu.
         if (mainActivity != null && mainActivity.getSupportActionBar() != null) {
             ActionBar sab = mainActivity.getSupportActionBar();
-
             boolean landscape = mainActivity.getResources().getBoolean(R.bool.is_landscape);
-            if (!landscape) {
+            boolean xlarge = mainActivity.screenSize == Configuration.SCREENLAYOUT_SIZE_XLARGE;
+            if (!landscape && !xlarge) {
                 sab.setTitle(R.string.fragmentTitlePhoto);
                 sab.setDisplayHomeAsUpEnabled(true);
                 sab.setDisplayShowHomeEnabled(true);
@@ -139,7 +160,12 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
         // Do nothing.
     }
 
-    public static PhotoFragment newInstance(int dbRecordID){
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    public static PhotoFragment newInstance(long dbRecordID){
         PhotoFragment fragment = new PhotoFragment();
         Bundle bundle = new Bundle();
         bundle.putLong("dbRecordID", dbRecordID);
@@ -152,9 +178,46 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
         if (args != null && args.containsKey("dbRecordID")){
             dbRecordId = args.getLong("dbRecordID", 0);
         }
+        if (args != null && args.containsKey("fullScreenImageResourceId")) {
+            fullScreenImageResourceId = args.getInt("fullScreenImageResourceId", 0);
+        }
     }
 
+    public Dialog fullScreenPhoto(int imageResourceId) {
 
+        getArguments().putInt("fullScreenImageResourceId", imageResourceId);
+
+        ImageView imageView = new ImageView(getContext());
+        imageView.setImageResource(imageResourceId);
+
+        RelativeLayout.LayoutParams params;
+        params = new RelativeLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+        );
+
+        fullScreenImageDialog = new Dialog(getContext(), android.R.style.Theme_Black_NoTitleBar_Fullscreen) {
+
+            @Override
+            public boolean onTouchEvent(MotionEvent event) {
+                fullScreenImageDialog.onBackPressed();
+                return true;
+            }
+
+            @Override
+            public void onBackPressed() {
+                getArguments().remove("fullScreenImageResourceId");
+                fullScreenImageResourceId = 0;
+                fullScreenImageDialog.dismiss();
+                fullScreenImageDialog = null;
+            }
+
+        };
+
+        fullScreenImageDialog.addContentView(imageView, params);
+        return fullScreenImageDialog;
+
+    }
 
 }
 

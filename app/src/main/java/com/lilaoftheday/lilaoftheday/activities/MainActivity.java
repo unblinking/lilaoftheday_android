@@ -1,7 +1,7 @@
 package com.lilaoftheday.lilaoftheday.activities;
 
 
-import android.app.Dialog;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,11 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import com.lilaoftheday.lilaoftheday.R;
 import com.lilaoftheday.lilaoftheday.fragments.MainFragment;
@@ -36,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
      */
 
     public Boolean savedInstanceNow = false;
+    public int screenSize;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +60,31 @@ public class MainActivity extends AppCompatActivity {
         }
 
         updateSupportActionBarTitle(getString(R.string.app_name));
+
+
+
+        screenSize = getResources().getConfiguration().screenLayout
+                & Configuration.SCREENLAYOUT_SIZE_MASK;
+
+       /* String toastMsg;
+        switch(screenSize) {
+            case Configuration.SCREENLAYOUT_SIZE_XLARGE:
+                toastMsg = "Xlarge screen";
+                break;
+            case Configuration.SCREENLAYOUT_SIZE_LARGE:
+                toastMsg = "Large screen";
+                break;
+            case Configuration.SCREENLAYOUT_SIZE_NORMAL:
+                toastMsg = "Normal screen";
+                break;
+            case Configuration.SCREENLAYOUT_SIZE_SMALL:
+                toastMsg = "Small screen";
+                break;
+            default:
+                toastMsg = "Screen size is neither xlarge, large, normal or small";
+        }
+        Toast.makeText(this, toastMsg, Toast.LENGTH_LONG).show();*/
+
 
     }
 
@@ -218,31 +240,6 @@ public class MainActivity extends AppCompatActivity {
                 getSupportActionBar().hide();
             }
         }
-    }
-
-    public Dialog fullScreenPhoto(int imageResourceId) {
-
-        ImageView imageView = new ImageView(this);
-        imageView.setImageResource(imageResourceId);
-
-        RelativeLayout.LayoutParams params;
-        params = new RelativeLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
-        );
-
-        Dialog dialog = new Dialog(this, android.R.style.Theme_Black_NoTitleBar_Fullscreen) {
-            @Override
-            public boolean onTouchEvent(MotionEvent event) {
-                // Tap anywhere to close dialog.
-                this.dismiss();
-                return true;
-            }
-        };
-        dialog.addContentView(imageView, params);
-
-        return dialog;
-
     }
 
 }
