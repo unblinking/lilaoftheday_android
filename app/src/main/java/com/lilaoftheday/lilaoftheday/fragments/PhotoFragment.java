@@ -6,13 +6,13 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -21,7 +21,9 @@ import android.widget.RelativeLayout;
 
 import com.lilaoftheday.lilaoftheday.R;
 import com.lilaoftheday.lilaoftheday.activities.MainActivity;
+import com.lilaoftheday.lilaoftheday.data.CatArray;
 import com.lilaoftheday.lilaoftheday.utilities.FragmentBoss;
+import com.lilaoftheday.lilaoftheday.utilities.OnSwipeTouchListener;
 import com.lilaoftheday.lilaoftheday.utilities.Utilities;
 
 /**
@@ -32,10 +34,8 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
     View view;
     MainActivity mainActivity;
 
-    long dbRecordId;
     int menuItemHome = Utilities.generateViewId();
     ImageView imageViewCatPhoto;
-    int fullScreenImageResourceId;
     Dialog fullScreenImageDialog;
 
     public PhotoFragment() {
@@ -63,20 +63,19 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
             }
         }
         setHasOptionsMenu(true);
-        getFragmentArguments();
 
         imageViewCatPhoto = (ImageView) view.findViewById(R.id.photo);
-        final int imageResourceId = (int) dbRecordId;
-        imageViewCatPhoto.setImageResource(imageResourceId);
+        final int resourceId = (int) getArguments().getLong("dbRecordID", 0);
+        imageViewCatPhoto.setImageResource(resourceId);
         imageViewCatPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fullScreenPhoto(imageResourceId).show();
+                fullScreenPhoto(resourceId).show();
             }
         });
 
-        if (fullScreenImageResourceId > 0) {
-            fullScreenPhoto(fullScreenImageResourceId).show();
+        if (getArguments().getInt("fullScreenImageResourceId", 0) > 0) {
+            fullScreenPhoto(getArguments().getInt("fullScreenImageResourceId", 0)).show();
         }
 
         return view;
@@ -167,22 +166,13 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
         super.onSaveInstanceState(savedInstanceState);
     }
 
-    public static PhotoFragment newInstance(long dbRecordID){
+    public static PhotoFragment newInstance(long dbRecordID, String tagTitle){
         PhotoFragment fragment = new PhotoFragment();
         Bundle bundle = new Bundle();
         bundle.putLong("dbRecordID", dbRecordID);
+        bundle.putString("tagTitle", tagTitle);
         fragment.setArguments(bundle);
         return fragment;
-    }
-
-    public void getFragmentArguments() {
-        Bundle args = getArguments();
-        if (args != null && args.containsKey("dbRecordID")){
-            dbRecordId = args.getLong("dbRecordID", 0);
-        }
-        if (args != null && args.containsKey("fullScreenImageResourceId")) {
-            fullScreenImageResourceId = args.getInt("fullScreenImageResourceId", 0);
-        }
     }
 
     public Dialog fullScreenPhoto(int imageResourceId) {
@@ -198,7 +188,7 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
                 ViewGroup.LayoutParams.MATCH_PARENT
         );
 
-        ImageView imageViewPrev = new ImageView(getContext());
+        final ImageView imageViewPrev = new ImageView(getContext());
         imageViewPrev.setImageResource(R.drawable.ic_chevron_left_white_48dp);
         FrameLayout.LayoutParams paramsPrev = new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.WRAP_CONTENT,
@@ -207,7 +197,7 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
         paramsPrev.gravity = Gravity.START;
         imageViewPrev.setLayoutParams(paramsPrev);
 
-        ImageView imageViewNext = new ImageView(getContext());
+        final ImageView imageViewNext = new ImageView(getContext());
         imageViewNext.setImageResource(R.drawable.ic_chevron_right_white_48dp);
         FrameLayout.LayoutParams paramsNext = new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.WRAP_CONTENT,
@@ -216,20 +206,37 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
         paramsNext.gravity = Gravity.END;
         imageViewNext.setLayoutParams(paramsNext);
 
-        fullScreenImageDialog = new Dialog(getContext(), android.R.style.Theme_Black_NoTitleBar_Fullscreen) {
-
-            @Override
-            public boolean onTouchEvent(MotionEvent event) {
-                /*fullScreenImageDialog.onBackPressed();*/
-                return true;
-            }
+        fullScreenImageDialog = new Dialog(
+                getContext(),
+                android.R.style.Theme_Black_NoTitleBar_Fullscreen
+        ) {
 
             @Override
             public void onBackPressed() {
+
+                int resourceId = getArguments().getInt("fullScreenImageResourceId", 0);
+
+                // Change the imageViewCatPhoto right away, so that when the dialog dismisses itself
+                // the last full screen photo is already in the imageViewCatPhoto. We add a photo
+                // fragment next, but the dialog will dismiss before that is totally done being
+                // added, so we don't want to see that old photo for just a brief moment.
+                imageViewCatPhoto.setImageResource(resourceId);
+
+                int containerViewId = R.id.photoContainer;
+                String tagTitle = new CatArray().getPhotoName(getContext(), resourceId);
+                String tagCombo = FragmentBoss.tagJoiner(tagTitle, containerViewId, resourceId);
+                FragmentManager fm = getFragmentManager();
+                Fragment fragment = PhotoFragment.newInstance(resourceId, tagTitle);
+
+                FragmentBoss.replaceFragmentInContainer(
+                        containerViewId,
+                        fm,
+                        fragment,
+                        tagCombo
+                );
+
                 getArguments().remove("fullScreenImageResourceId");
-                fullScreenImageResourceId = 0;
-                fullScreenImageDialog.dismiss();
-                fullScreenImageDialog = null;
+
             }
 
         };
@@ -239,20 +246,26 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
         frameLayout.addView(imageViewPrev);
         frameLayout.addView(imageViewNext);
 
+        imageViewPhoto.setOnTouchListener(new OnSwipeTouchListener(getContext()){
+            @Override
+            public void onSwipeLeft() {
+                imageViewPrev.performClick();
+            }
+            @Override
+            public void onSwipeRight() {
+                imageViewNext.performClick();
+            }
+        });
+
         imageViewPrev.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick (View view) {
-                        // Get copy of current resource ID from arguments.
-                        int i = getArguments().getInt("fullScreenImageResourceId", 0);
-                        // Remove current resource ID from arguments.
+                        int resourceId = getArguments().getInt("fullScreenImageResourceId", 0);
+                        int pResourceId = new CatArray().getPreviousResId(getContext(), resourceId);
                         getArguments().remove("fullScreenImageResourceId");
-                        // Decrement old resource ID.
-                        i--;
-                        // Put new resource ID into arguments.
-                        getArguments().putInt("fullScreenImageResourceId", i);
-                        // Set new resource ID as image resource.
-                        imageViewPhoto.setImageResource(i);
+                        getArguments().putInt("fullScreenImageResourceId", pResourceId);
+                        imageViewPhoto.setImageResource(pResourceId);
                     }
                 }
         );
@@ -260,16 +273,11 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
                 new View.OnClickListener() {
                     @Override
                     public void onClick (View view) {
-                        // Get copy of current resource ID from arguments.
-                        int i = getArguments().getInt("fullScreenImageResourceId", 0);
-                        // Remove current resource ID from arguments.
+                        int resourceId = getArguments().getInt("fullScreenImageResourceId", 0);
+                        int nResourceId = new CatArray().getNextResId(getContext(), resourceId);
                         getArguments().remove("fullScreenImageResourceId");
-                        // Increment old resource ID.
-                        i++;
-                        // Put new resource ID into arguments.
-                        getArguments().putInt("fullScreenImageResourceId", i);
-                        // Set new resource ID as image resource.
-                        imageViewPhoto.setImageResource(i);
+                        getArguments().putInt("fullScreenImageResourceId", nResourceId);
+                        imageViewPhoto.setImageResource(nResourceId);
                     }
                 }
         );

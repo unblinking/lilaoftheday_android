@@ -64,9 +64,72 @@ public class CatArray {
             catArrayList.add(cat);
         }
 
-        /*Collections.shuffle(catArrayList);*/
+        return catArrayList;
 
-        return (catArrayList);
+    }
+
+    public int getPreviousResId(Context context, int resourceId) {
+
+        // Get the Cat array list.
+        ArrayList<Cat> catArrayList = new CatArray().getCatArray(context);
+
+        // Get the index from the Cat array list for the supplied resourceId.
+        int currentImageIndex = 0;
+        for (int i = 0; i < catArrayList.size(); i++) {
+            if (resourceId == catArrayList.get(i).getDbRecordId()) {
+                currentImageIndex = i;
+            }
+        }
+
+        // Get the previous index from the Cat array list, wrap around when reaching zero.
+        // Neat use of modulus to loop through the array. The modulus returns the
+        // remainder. If the current index is zero, this will return the remainder
+        // as the full cat array list size, starting over at the end of the array.
+        int previousIndex = (currentImageIndex + catArrayList.size() - 1) % catArrayList.size();
+
+        // Get the previous resource ID using the previous index.
+        return catArrayList.get(previousIndex).getDbRecordId();
+
+    }
+
+    public int getNextResId(Context context, int resourceId) {
+
+        // Get the Cat array list.
+        ArrayList<Cat> catArrayList = new CatArray().getCatArray(context);
+
+        // Get the index from the Cat array list for the supplied resourceId.
+        int currentImageIndex = 0;
+        for (int i = 0; i < catArrayList.size(); i++) {
+            if (resourceId == catArrayList.get(i).getDbRecordId()) {
+                currentImageIndex = i;
+            }
+        }
+
+        // Determine the next index, wrap around when reaching zero.
+        // Neat use of modulus to loop through the array. The modulus returns the
+        // remainder. If the current index equals the full size of the cat array
+        // list, the remainder is zero, starting over at the beginning of the array.
+        int nextIndex = (currentImageIndex + 1) % catArrayList.size();
+
+        // Get the next resource ID using the next index.
+        return catArrayList.get(nextIndex).getDbRecordId();
+
+    }
+
+    public String getPhotoName(Context context, int resourceId) {
+
+        // Get the Cat array list.
+        ArrayList<Cat> catArrayList = new CatArray().getCatArray(context);
+
+        // Get the index from the Cat array list for the supplied resourceId.
+        int currentImageIndex = 0;
+        for (int i = 0; i < catArrayList.size(); i++) {
+            if (resourceId == catArrayList.get(i).getDbRecordId()) {
+                currentImageIndex = i;
+            }
+        }
+
+        return catArrayList.get(currentImageIndex).getPhotoName();
 
     }
 

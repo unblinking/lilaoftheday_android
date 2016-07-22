@@ -84,7 +84,7 @@ public class CatListAdapter extends RecyclerView.Adapter<CatListAdapter.CatViewH
                 AppCompatActivity activity = (MainActivity) context;
                 FragmentManager fm = activity.getSupportFragmentManager();
                 int containerViewId = R.id.photoContainer;
-                Fragment fragment = PhotoFragment.newInstance(dbRecordId);
+                Fragment fragment = PhotoFragment.newInstance(dbRecordId, tagTitle);
                 String tagCombo = FragmentBoss.tagJoiner(tagTitle, containerViewId, dbRecordId);
 
                 FragmentBoss.replaceFragmentInContainer(
