@@ -248,13 +248,9 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
 
         imageViewPhoto.setOnTouchListener(new OnSwipeTouchListener(getContext()){
             @Override
-            public void onSwipeLeft() {
-                imageViewPrev.performClick();
-            }
+            public void onSwipeLeft() {imageViewNext.performClick();}
             @Override
-            public void onSwipeRight() {
-                imageViewNext.performClick();
-            }
+            public void onSwipeRight() {imageViewPrev.performClick();}
         });
 
         imageViewPrev.setOnClickListener(
