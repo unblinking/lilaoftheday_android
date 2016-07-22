@@ -19,7 +19,6 @@ public class AlarmChecker {
                 AlarmReceiver.class
         );
 
-
         PendingIntent pendingIntent;
         pendingIntent = PendingIntent.getBroadcast(
                 context,
