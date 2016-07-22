@@ -45,7 +45,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
 
         int smallIcon;
-        smallIcon = R.drawable.icon_small;
+        smallIcon = R.drawable.ic_cat;
 
         Bitmap largeIcon;
         largeIcon = BitmapFactory.decodeResource(

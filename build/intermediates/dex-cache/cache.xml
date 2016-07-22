@@ -47,7 +47,7 @@
         jar="D:\android_studio_projects\Lilaoftheday\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="717dd4b237d34bb4df566bb934b817a6d2fd164c">
+        sha1="fd692f6ba59cd8f89ad557315b07ed27582e12a1">
         <dex dex="D:\android_studio_projects\Lilaoftheday\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_5c5652d9dba8635767bbfd527b2403f1ef97a367\classes.dex" />
     </item>
     <item
@@ -61,7 +61,7 @@
         jar="D:\android_studio_projects\Lilaoftheday\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="5671b3938c008733dbb6a0c8232778883073a9ee">
+        sha1="55b9e4eb2df27bff86320a3e7b44098f5fd8db71">
         <dex dex="D:\android_studio_projects\Lilaoftheday\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_baa1c544dd0620a8426af89ef1d126efeec5b39d\classes.dex" />
     </item>
     <item

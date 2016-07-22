@@ -1,5 +1,9 @@
-package com.lilaoftheday.lilaoftheday.activities;
+/*
+ * Copyright (C) 2015-2016 Joshua Gray <joshua@joshgray.com>. All Rights Reserved.
+ * Proprietary and confidential. Unauthorized access strictly prohibited.
+ */
 
+package com.lilaoftheday.lilaoftheday.activities;
 
 import android.content.res.Configuration;
 import android.os.Build;
@@ -16,78 +20,69 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.lilaoftheday.lilaoftheday.R;
-import com.lilaoftheday.lilaoftheday.fragments.MainFragment;
+import com.lilaoftheday.lilaoftheday.fragments.GridFragment;
 import com.lilaoftheday.lilaoftheday.fragments.PreferenceFragment;
 import com.lilaoftheday.lilaoftheday.utilities.FragmentBoss;
 
+/**
+ * Main class of the Lila of the day application.
+ *
+ *
+ */
 public class MainActivity extends AppCompatActivity {
 
     /*
      * TODO: Write unit tests.
      * https://developer.android.com/training/testing/unit-testing/local-unit-tests.html
-     *
-     * TODO: Create separate layout under layout-large-land and other similar qualifiers.
-     * https://developer.android.com/guide/practices/screens_support.html
-     *
      */
 
     public Boolean savedInstanceNow = false;
     public int screenSize;
 
+    /**
+     * Starts the Lila of the day application.
+     *
+     * Sets the main content view, loads user preferences, creates the toolbar, shows the grid
+     * fragment, and determines the device screen size.
+     *
+     * @param savedInstanceState Bundle: if the activity is being re-initialized after previously
+     *                           being shut down then this Bundle contains the data it most
+     *                           recently supplied in onSaveInstanceState(Bundle). Note: Otherwise
+     *                           it is null.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
         savedInstanceNow = false;
+        screenSize = getResources().getConfiguration().screenLayout
+                & Configuration.SCREENLAYOUT_SIZE_MASK;
 
-        setContentView(R.layout.activity_main);
-
-        // Initialize default preference values.
         PreferenceManager.setDefaultValues(
                 this, // Context
                 R.xml.preferences, // Resource ID
                 false // only if this method has never been called in the past
         );
 
-        // Create a toolbar.
+        setContentView(R.layout.activity_main);
+
         Toolbar toolbar;
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
-
-        // Only do this stuff when the activity is started for the very first time.
-        if (savedInstanceState == null) {
-            showMainFragment();
-        }
-
         updateSupportActionBarTitle(getString(R.string.app_name));
 
-
-
-        screenSize = getResources().getConfiguration().screenLayout
-                & Configuration.SCREENLAYOUT_SIZE_MASK;
-
-       /* String toastMsg;
-        switch(screenSize) {
-            case Configuration.SCREENLAYOUT_SIZE_XLARGE:
-                toastMsg = "Xlarge screen";
-                break;
-            case Configuration.SCREENLAYOUT_SIZE_LARGE:
-                toastMsg = "Large screen";
-                break;
-            case Configuration.SCREENLAYOUT_SIZE_NORMAL:
-                toastMsg = "Normal screen";
-                break;
-            case Configuration.SCREENLAYOUT_SIZE_SMALL:
-                toastMsg = "Small screen";
-                break;
-            default:
-                toastMsg = "Screen size is neither xlarge, large, normal or small";
+        if (savedInstanceState == null) {
+            showGridFragment();
         }
-        Toast.makeText(this, toastMsg, Toast.LENGTH_LONG).show();*/
-
 
     }
 
+    /**
+     * Takes action when the user pressed the back button.
+     *
+     *
+     */
     @Override
     public void onBackPressed() {
         FragmentManager fm = getSupportFragmentManager();
@@ -96,12 +91,12 @@ public class MainActivity extends AppCompatActivity {
         if (backStackCount == 1 && !savedInstanceNow) {
             finish();
         } else if (backStackCount > 1 && !savedInstanceNow) {
-            // Details to identify the mainFragment photo list.
+            // Details to identify the grid fragment.
             int containerViewId = R.id.mainContainer;
             String tagTitle = getString(R.string.app_name);
             int dbRecordId = -1;
             String tagCombo = FragmentBoss.tagJoiner(tagTitle, containerViewId, dbRecordId);
-            // If the fragment being backed out of is the mainFragment photo list, bury it instead
+            // If the fragment being backed out of is the grid fragment, bury it instead
             // of removing it. If not, pop it.
             if (fm.getBackStackEntryAt(backStackCount - 1).getName().equals(tagCombo)) {
                 FragmentBoss.buryFragmentInBackStack(fm, tagCombo);
@@ -162,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-    public void showMainFragment() {
+    public void showGridFragment() {
 
         String tagTitle = getString(R.string.app_name);
         int containerViewId = R.id.mainContainer;
@@ -170,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
         String tagCombo = FragmentBoss.tagJoiner(tagTitle, containerViewId, dbRecordId);
 
         FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = MainFragment.newInstance(dbRecordId);
+        Fragment fragment = GridFragment.newInstance(dbRecordId);
 
         FragmentBoss.replaceFragmentInContainer(containerViewId, fm, fragment, tagCombo);
 

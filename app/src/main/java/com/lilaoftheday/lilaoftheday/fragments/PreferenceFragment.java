@@ -83,7 +83,7 @@ public class PreferenceFragment extends PreferenceFragmentCompat implements Shar
             mainActivity.onBackPressed();
             return true;
         } else if (itemId == menuItemHome) {
-            mainActivity.showMainFragment();
+            mainActivity.showGridFragment();
             FragmentBoss.topFragmentOnResume(getFragmentManager());
             return true;
         } else {

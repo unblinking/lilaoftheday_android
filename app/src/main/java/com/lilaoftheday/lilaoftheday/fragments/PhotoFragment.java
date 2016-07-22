@@ -8,12 +8,14 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -113,7 +115,7 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
             mainActivity.onBackPressed();
             return true;
         } else if (itemId == menuItemHome) {
-            mainActivity.showMainFragment();
+            mainActivity.showGridFragment();
             FragmentBoss.topFragmentOnResume(getFragmentManager());
             return true;
         } else {
@@ -187,20 +189,38 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
 
         getArguments().putInt("fullScreenImageResourceId", imageResourceId);
 
-        ImageView imageView = new ImageView(getContext());
-        imageView.setImageResource(imageResourceId);
-
+        final ImageView imageViewPhoto = new ImageView(getContext());
+        imageViewPhoto.setImageResource(imageResourceId);
+        imageViewPhoto.setTag(imageResourceId);
         RelativeLayout.LayoutParams params;
         params = new RelativeLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT
         );
 
+        ImageView imageViewPrev = new ImageView(getContext());
+        imageViewPrev.setImageResource(R.drawable.ic_chevron_left_white_48dp);
+        FrameLayout.LayoutParams paramsPrev = new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.WRAP_CONTENT,
+                FrameLayout.LayoutParams.MATCH_PARENT
+        );
+        paramsPrev.gravity = Gravity.START;
+        imageViewPrev.setLayoutParams(paramsPrev);
+
+        ImageView imageViewNext = new ImageView(getContext());
+        imageViewNext.setImageResource(R.drawable.ic_chevron_right_white_48dp);
+        FrameLayout.LayoutParams paramsNext = new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.WRAP_CONTENT,
+                FrameLayout.LayoutParams.MATCH_PARENT
+        );
+        paramsNext.gravity = Gravity.END;
+        imageViewNext.setLayoutParams(paramsNext);
+
         fullScreenImageDialog = new Dialog(getContext(), android.R.style.Theme_Black_NoTitleBar_Fullscreen) {
 
             @Override
             public boolean onTouchEvent(MotionEvent event) {
-                fullScreenImageDialog.onBackPressed();
+                /*fullScreenImageDialog.onBackPressed();*/
                 return true;
             }
 
@@ -214,7 +234,48 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
 
         };
 
-        fullScreenImageDialog.addContentView(imageView, params);
+        FrameLayout frameLayout = new FrameLayout(getContext());
+        frameLayout.addView(imageViewPhoto);
+        frameLayout.addView(imageViewPrev);
+        frameLayout.addView(imageViewNext);
+
+        imageViewPrev.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick (View view) {
+                        // Get copy of current resource ID from arguments.
+                        int i = getArguments().getInt("fullScreenImageResourceId", 0);
+                        // Remove current resource ID from arguments.
+                        getArguments().remove("fullScreenImageResourceId");
+                        // Decrement old resource ID.
+                        i--;
+                        // Put new resource ID into arguments.
+                        getArguments().putInt("fullScreenImageResourceId", i);
+                        // Set new resource ID as image resource.
+                        imageViewPhoto.setImageResource(i);
+                    }
+                }
+        );
+        imageViewNext.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick (View view) {
+                        // Get copy of current resource ID from arguments.
+                        int i = getArguments().getInt("fullScreenImageResourceId", 0);
+                        // Remove current resource ID from arguments.
+                        getArguments().remove("fullScreenImageResourceId");
+                        // Increment old resource ID.
+                        i++;
+                        // Put new resource ID into arguments.
+                        getArguments().putInt("fullScreenImageResourceId", i);
+                        // Set new resource ID as image resource.
+                        imageViewPhoto.setImageResource(i);
+                    }
+                }
+        );
+
+        fullScreenImageDialog.addContentView(frameLayout, params);
+
         return fullScreenImageDialog;
 
     }

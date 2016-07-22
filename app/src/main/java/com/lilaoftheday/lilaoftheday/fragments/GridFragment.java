@@ -20,7 +20,7 @@ import com.lilaoftheday.lilaoftheday.adapters.CatListAdapter;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MainFragment extends Fragment implements View.OnClickListener {
+public class GridFragment extends Fragment implements View.OnClickListener {
 
     View view;
     MainActivity mainActivity;
@@ -28,7 +28,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     long dbRecordId;
     CatListAdapter catListAdapter;
 
-    public MainFragment() {
+    public GridFragment() {
         // Required empty public constructor
     }
 
@@ -126,8 +126,8 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         // Do nothing.
     }
 
-    public static MainFragment newInstance(int dbRecordID){
-        MainFragment fragment = new MainFragment();
+    public static GridFragment newInstance(int dbRecordID){
+        GridFragment fragment = new GridFragment();
         Bundle bundle = new Bundle();
         bundle.putLong("dbRecordID", dbRecordID);
         fragment.setArguments(bundle);
