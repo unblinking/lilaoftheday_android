@@ -68,6 +68,17 @@ public class CatArray {
 
     }
 
+    /**
+     * Called to get the resource ID of the previous image in the cat array.
+     *
+     * From Stack Overflow
+     * @see <a href="http://stackoverflow.com/a/30841413">how-click-next-button-and-back-button-in-array-index</a>
+     *
+     * @param context Context: Interface to global information about an application environment.
+     * @param resourceId int: The current cat array image resource ID.
+     *
+     * @return The return value is the resource ID of the previous image in the array.
+     */
     public int getPreviousResId(Context context, int resourceId) {
 
         // Get the Cat array list.
@@ -92,6 +103,17 @@ public class CatArray {
 
     }
 
+    /**
+     * Called to get the resource ID of the next image in the cat array.
+     *
+     * From Stack Overflow
+     * @see <a href="http://stackoverflow.com/a/30841413">how-click-next-button-and-back-button-in-array-index</a>
+     *
+     * @param context Context: Interface to global information about an application environment.
+     * @param resourceId int: The current cat array image resource ID.
+     *
+     * @return The return value is the resource ID of the next image in the array.
+     */
     public int getNextResId(Context context, int resourceId) {
 
         // Get the Cat array list.
