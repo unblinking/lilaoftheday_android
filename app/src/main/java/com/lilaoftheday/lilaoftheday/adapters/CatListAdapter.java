@@ -16,7 +16,7 @@ import com.lilaoftheday.lilaoftheday.activities.MainActivity;
 import com.lilaoftheday.lilaoftheday.data.CatArray;
 import com.lilaoftheday.lilaoftheday.fragments.PhotoFragment;
 import com.lilaoftheday.lilaoftheday.models.Cat;
-import com.lilaoftheday.lilaoftheday.utilities.FragmentBoss;
+import com.nothingworksright.fragmentboss.FragmentBoss;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

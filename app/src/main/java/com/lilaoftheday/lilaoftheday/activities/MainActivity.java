@@ -20,7 +20,7 @@ import android.view.View;
 import com.lilaoftheday.lilaoftheday.R;
 import com.lilaoftheday.lilaoftheday.fragments.GridFragment;
 import com.lilaoftheday.lilaoftheday.fragments.PreferenceFragment;
-import com.lilaoftheday.lilaoftheday.utilities.FragmentBoss;
+import com.nothingworksright.fragmentboss.FragmentBoss;
 
 /**
  * Main class of the Lila of the day application.

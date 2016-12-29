@@ -22,9 +22,9 @@ import android.widget.RelativeLayout;
 import com.lilaoftheday.lilaoftheday.R;
 import com.lilaoftheday.lilaoftheday.activities.MainActivity;
 import com.lilaoftheday.lilaoftheday.data.CatArray;
-import com.lilaoftheday.lilaoftheday.utilities.FragmentBoss;
 import com.lilaoftheday.lilaoftheday.utilities.OnSwipeTouchListener;
 import com.lilaoftheday.lilaoftheday.utilities.Utilities;
+import com.nothingworksright.fragmentboss.FragmentBoss;
 
 /**
  * A simple {@link Fragment} subclass.

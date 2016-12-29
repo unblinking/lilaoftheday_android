@@ -20,8 +20,8 @@ import com.lilaoftheday.lilaoftheday.R;
 import com.lilaoftheday.lilaoftheday.activities.MainActivity;
 import com.lilaoftheday.lilaoftheday.alarms.AlarmCanceler;
 import com.lilaoftheday.lilaoftheday.alarms.AlarmScheduler;
-import com.lilaoftheday.lilaoftheday.utilities.FragmentBoss;
 import com.lilaoftheday.lilaoftheday.utilities.Utilities;
+import com.nothingworksright.fragmentboss.FragmentBoss;
 
 
 public class PreferenceFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
