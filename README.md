@@ -1,2 +1,3 @@
-# lilaOfTheDay_android
-The outcome of creative play.
+# Lila Of The Day app  
+
+The outcome of creative play.  
