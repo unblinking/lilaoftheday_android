@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\Users\jmg1138\.android\build-cache\406a9e5097179e7310213a739fdde702b9ae89f8\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5e401db0726305f1ec61a37097f330260935ff72">
+        <dex dex="C:\Users\jmg1138\Desktop\git\lilaoftheday_android\app\build\intermediates\pre-dexed\debug\classes_5b36316b6ad0db5c9c05cac84912e758b4563856.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Android\Android Studio\gradle\m2repository\com\google\guava\guava\18.0\guava-18.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="cce0823396aa693798f8882e64213b1772032b09">
+        <dex dex="C:\Users\jmg1138\Desktop\git\lilaoftheday_android\app\build\intermediates\pre-dexed\debug\guava-18.0_160405041193cf653ec7c51d39d8012de2c7a700.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jmg1138\.android\build-cache\63ecccc2371a65a21ba0d4c5b8bbcd62a34bc24c\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e79aa3d9a16f8c9f16377c0608de70a8f31e5d80">
+        <dex dex="C:\Users\jmg1138\Desktop\git\lilaoftheday_android\app\build\intermediates\pre-dexed\debug\classes_eadc22f3e9a12d755099dee95b148bdfada06c04.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jmg1138\.android\build-cache\2e852947c7dd2aa11c4dc3b667657bcd7d35f4ab\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="1630658fbc2d222b988603c27b4a4249586fbfe7">
+        <dex dex="C:\Users\jmg1138\Desktop\git\lilaoftheday_android\app\build\intermediates\pre-dexed\debug\classes_c4ebf52152bc6fbb2a58649f98a50daf50a76bed.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jmg1138\.android\build-cache\6d7fad08da0f203806d09c312998e887ca9c3625\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d38084015027549951cbaea5d5f6fb795cc81151">
+        <dex dex="C:\Users\jmg1138\Desktop\git\lilaoftheday_android\app\build\intermediates\pre-dexed\debug\classes_31e0000155266f375751beafe57f414c43c0772b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jmg1138\.android\build-cache\9a8005bc46ab8fbffd48a5f3d45b02a49d0bda72\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2a53c4f3518116b8c6aee0e477233f0f7da8616f">
+        <dex dex="C:\Users\jmg1138\Desktop\git\lilaoftheday_android\app\build\intermediates\pre-dexed\debug\classes_25db3cbd9944ff29fabd724fab6ff23f097dded5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jmg1138\.android\build-cache\5ceb05e75f7e0d31607ff450f8215e0e93ff5410\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="378c0fefdd7adedd0ea74d7607b3d4a251b29d78">
+        <dex dex="C:\Users\jmg1138\Desktop\git\lilaoftheday_android\app\build\intermediates\pre-dexed\debug\classes_9d1990c228f99eb733ce07593db6da5b78bc5c95.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jmg1138\.android\build-cache\e977ad510925465452030a117c52714101693050\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6fb6ac3e8d3b9013819920d9ea11f3803c4c0033">
+        <dex dex="C:\Users\jmg1138\Desktop\git\lilaoftheday_android\app\build\intermediates\pre-dexed\debug\classes_865bfceeff284a0daa72923698ec23cd6123505f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jmg1138\.android\build-cache\ba8da1b694b4bebfed5ebd6874bc265b82986bd2\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2703eaeda14f8680d8b88547c373fde0e1cb66aa">
+        <dex dex="C:\Users\jmg1138\Desktop\git\lilaoftheday_android\app\build\intermediates\pre-dexed\debug\classes_b1bfa2b57a60eaf72691dbc9ea129812552468eb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jmg1138\.android\build-cache\71e8ed88694ca405ea80ad399d61bf9ca16febcb\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b266c8faa5af72e579b9da36ef35053ffed6ac64">
+        <dex dex="C:\Users\jmg1138\Desktop\git\lilaoftheday_android\app\build\intermediates\pre-dexed\debug\classes_661ec0cb403bd7553439d800a58da5536e80e261.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jmg1138\.android\build-cache\4b7d83c237b95801638970c1ed237472ec629873\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="f02263e35e52668dd17b73bf961437e3d562b35f">
+        <dex dex="C:\Users\jmg1138\Desktop\git\lilaoftheday_android\app\build\intermediates\pre-dexed\debug\classes_4feb58402c1029954162796ddc89bdf75cad91e6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jmg1138\.android\build-cache\ea39e2a7a5614ed90f7f1c5724e437f5f701f60b\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7f2420506110902f033406b25697cf97ee8c38b2">
+        <dex dex="C:\Users\jmg1138\Desktop\git\lilaoftheday_android\app\build\intermediates\pre-dexed\debug\classes_79a78352b8cc0c7b03722bf994c2c10d8a0e4a30.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jmg1138\.android\build-cache\fbdcf41b7bf5f68a2e44f0f7ac27b4fb138fc446\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0a0ef86b7fa568a52bf6214a0326ca1f1d618da7">
+        <dex dex="C:\Users\jmg1138\Desktop\git\lilaoftheday_android\app\build\intermediates\pre-dexed\debug\classes_cd4bc530909a5d4f55af580730c55c868bacc6a3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jmg1138\.android\build-cache\ae95bf2a9f72f4d4a51191d62eb3d4838f2174c7\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="aee64634871d88a419d59eb743c1258a60f19700">
+        <dex dex="C:\Users\jmg1138\Desktop\git\lilaoftheday_android\app\build\intermediates\pre-dexed\debug\classes_c9d91f6a92b4722872c71497dfb7e67af9a1e2b7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jmg1138\.android\build-cache\857b1524ce7e4777ee1dadc06abf8b41f10a7f4a\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d2772338dc47df77740263fe45995baa29d75faf">
+        <dex dex="C:\Users\jmg1138\Desktop\git\lilaoftheday_android\app\build\intermediates\pre-dexed\debug\classes_838e20ff3e42cd8cdd042f5ce398baf27438537b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.1.0\support-annotations-25.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="64cb6b229a8bdfd907bc8dd46839a0053e4c018d">
+        <dex dex="C:\Users\jmg1138\Desktop\git\lilaoftheday_android\app\build\intermediates\pre-dexed\debug\support-annotations-25.1.0_02baeb670494e05445d1d19bd633f25b3b7164c6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jmg1138\.android\build-cache\a4baac317a300fad00723aa2b61bbf66c9fbc4d6\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ca3c7aa31e2726a400a6e552b93cb9f63c9a1e6d">
+        <dex dex="C:\Users\jmg1138\Desktop\git\lilaoftheday_android\app\build\intermediates\pre-dexed\debug\classes_d4ce3544a32604a113d5559cf03fff85e26d84f5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jmg1138\.android\build-cache\bcae9726107a91c8a59e349d4b42b4cf1ed69dbb\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\jmg1138\Desktop\git\lilaoftheday_android\app\build\intermediates\pre-dexed\debug\classes_9151b99f392f4070489d71bd99ea5ab0e50cf19f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jmg1138\.android\build-cache\c8de356b38e673cfee09c7541a517666e7c10bb9\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6f4877a9f0a653e193bfb600379e4bfc8472be47">
+        <dex dex="C:\Users\jmg1138\Desktop\git\lilaoftheday_android\app\build\intermediates\pre-dexed\debug\classes_fd33bbc9c7a9510e42c895b8709bbe67f342f143.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jmg1138\.android\build-cache\de4ffcd2eef155326ceff3e1bb0e8b97ec0741eb\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="30103d98fa5ed824b54af839c85e2111f9bde8ec">
+        <dex dex="C:\Users\jmg1138\Desktop\git\lilaoftheday_android\app\build\intermediates\pre-dexed\debug\classes_93183b5b31bd3daf45f2749303bcf4ec11ac330f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jmg1138\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.2\7446d06ec8d4f7ffcc53f1da37c95f200dcb9387\picasso-2.5.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="C:\Users\jmg1138\Desktop\git\lilaoftheday_android\app\build\intermediates\pre-dexed\debug\picasso-2.5.2_53fa250c4c48ac66c410c790ba44000ee0df203c.jar" />
+    </item>
+
+</items>
