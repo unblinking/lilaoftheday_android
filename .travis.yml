@@ -38,7 +38,7 @@ cache:
 
 before_install:
   # Decrypt the keystore signing the APK 
-  - if [[ ${TRAVIS_PULL_REQUEST} == "false" ]]; then openssl aes-256-cbc -K $encrypted_ff1beafaaf78_key -iv $encrypted_ff1beafaaf78_iv -in secretfiles.tar.enc -out secretfiles.tar -d; fi
+  - if [[ ${TRAVIS_PULL_REQUEST} == "false" ]]; then openssl aes-256-cbc -K $encrypted_5447a36b1e2c_key -iv $encrypted_5447a36b1e2c_iv -in secretfiles.tar.enc -out secretfiles.tar -d; fi
   - if [[ ${TRAVIS_PULL_REQUEST} == "false" ]]; then tar xvf secretfiles.tar; fi
   # Set the executable flag on the gradle wrapper 
   - chmod +x gradlew

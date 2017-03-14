@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.github.triplet.play'
 
 android {
     compileSdkVersion 25
@@ -11,12 +12,57 @@ android {
         versionCode 6
         versionName "1.0.5"
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+    signingConfigs {
+        /*
+        debug {
+            storeFile rootProject.file('debug.keystore')
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+        }
+        */
+        if (System.getenv("TRAVIS") == "true" && System.getenv("TRAVIS_PULL_REQUEST") == "false") {
+            release {
+                storeFile file("../keystore.jks")
+                storePassword System.getenv("KEYSTORE_PASS")
+                keyAlias System.getenv("ALIAS_NAME")
+                keyPassword System.getenv("ALIAS_PASS")
+            }
+        }
+
+    }
+
+    if (System.getenv("TRAVIS") == "true" && System.getenv("TRAVIS_PULL_REQUEST") == "false") {
+        play {
+            serviceAccountEmail = System.getenv("SERVICE_EMAIL")
+            pk12File = file('../service_account_key.p12')
+            track = 'alpha'
         }
     }
+
+    buildTypes {
+        /*
+        debug {
+            signingConfig signingConfigs.debug
+            applicationIdSuffix '.debug'
+        }
+        */
+        if (System.getenv("TRAVIS") == "true" && System.getenv("TRAVIS_PULL_REQUEST") == "false") {
+            release {
+                signingConfig signingConfigs.release
+                minifyEnabled true // https://developer.android.com/studio/build/shrink-code.html#decoding
+                // shrinkResources true
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            }
+        }
+
+    }
+
+    lintOptions { 
+        abortOnError false 
+    }
+
 }
 
 repositories {
@@ -30,19 +76,27 @@ allprojects {
 }
 
 dependencies {
+
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:1.10.19'
+
+    // android
     compile 'com.android.support:appcompat-v7:25.1.0'
     compile 'com.android.support:recyclerview-v7:25.1.0'
     compile 'com.android.support:cardview-v7:25.1.0'
-    compile 'jp.wasabeef:recyclerview-animators:1.3.0'
     compile 'com.android.support:support-v4:25.1.0'
     compile 'com.android.support:preference-v14:25.1.0'
     compile 'com.android.support:design:25.1.0'
+
+    // google
+    compile 'com.google.guava:guava:18.0'
+
+    // more
+    compile 'jp.wasabeef:recyclerview-animators:1.3.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.inthecheesefactory.thecheeselibrary:adjustable-imageview:1.0.0'
-    compile 'com.google.guava:guava:18.0'
     compile 'com.nothingworksright:fragmentBoss:v1.0.1'
+
 }
 
