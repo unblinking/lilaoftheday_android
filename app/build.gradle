@@ -9,7 +9,7 @@ android {
         applicationId "com.lilaoftheday.lilaoftheday"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 7
+        versionCode 8
         versionName "1.0.5"
     }
 
