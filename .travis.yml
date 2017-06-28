@@ -62,4 +62,4 @@ after_failure:
 addons:
   code_climate:
     repo_token:
-      - 
+      - 3d4801d7d11c59a032d98f228a56ec4f6fb4191804d30f007c116500c1a5e4bf
