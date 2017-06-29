@@ -14,4 +14,4 @@ ratings:
   - "**.java"
   - "**.md"
 exclude_paths:
-- LICENSE.md
+- "LICENSE.md"
