@@ -9,8 +9,9 @@ engines:
   pmd:
     enabled: true
     channel: "beta"
-
 ratings:
   paths:
   - "**.java"
   - "**.md"
+exclude_paths:
+- LICENSE.md
