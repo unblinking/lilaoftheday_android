@@ -21,4 +21,4 @@ Support this open source project and motivate me to continue development. Using 
 
 [Click here to show your support](https://beerpay.io/nothingworksright/unblinkingbot?focus=wish).  
 
-[![Beerpay](https://beerpay.io/nothingworksright/lilaoftheday_android/badge.svg?style=beer)](https://beerpay.io/nothingworksright/lilaoftheday_android)  [![Beerpay](https://beerpay.io/nothingworksright/lilaoftheday_android/make-wish.svg?style=flat)](https://beerpay.io/nothingworksright/lilaoftheday_android?focus=wish)  
+[![Beerpay](https://beerpay.io/nothingworksright/lilaoftheday/badge.svg?style=beer)](https://beerpay.io/nothingworksright/lilaoftheday)  [![Beerpay](https://beerpay.io/nothingworksright/lilaoftheday/make-wish.svg?style=flat)](https://beerpay.io/nothingworksright/lilaoftheday?focus=wish)  
