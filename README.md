@@ -17,8 +17,8 @@ Visit [LilaOfTheDay.com](http://www.lilaoftheday.com) for additional information
 
 ## Show your support  
 
-Support this open source project and motivate me to continue development. Using [Beerpay.io](https://beerpay.io/nothingworksright/unblinkingbot?focus=wish) you can send me support, and make a wish for a new feature or issue fix.  
+Support this open source project and motivate me to continue development. Using [Beerpay.io](https://beerpay.io/nothingworksright/lilaoftheday?focus=wish) you can send me support, and make a wish for a new feature or issue fix.  
 
-[Click here to show your support](https://beerpay.io/nothingworksright/unblinkingbot?focus=wish).  
+[Click here to show your support](https://beerpay.io/nothingworksright/lilaoftheday?focus=wish).  
 
 [![Beerpay](https://beerpay.io/nothingworksright/lilaoftheday/badge.svg?style=beer)](https://beerpay.io/nothingworksright/lilaoftheday)  [![Beerpay](https://beerpay.io/nothingworksright/lilaoftheday/make-wish.svg?style=flat)](https://beerpay.io/nothingworksright/lilaoftheday?focus=wish)  
